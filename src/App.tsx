@@ -1,122 +1,76 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React from 'react';
+import { ConfigProvider, App as AntdApp } from 'antd';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { RouterProvider } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { UIProvider } from './contexts/UIContext';
+import { router } from './router';
+import './index.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
 
+export const App: React.FC = () => {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <QueryClientProvider client={queryClient}>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: '#0057c2',
+            colorBgBase: '#f7f9fc',
+            colorBgContainer: '#ffffff',
+            colorBorder: '#c1c6d7',
+            colorBorderSecondary: '#c1c6d7',
+            colorTextBase: '#191c1e',
+            colorTextSecondary: '#5e5e5e',
+            colorTextTertiary: '#414755',
+            colorError: '#ba1a1a',
+            colorErrorBg: '#ffdad6',
+            colorFillAlter: '#f2f4f7',     // surface-container-low (table header / hover)
+            colorFillContent: '#eceef1',   // surface-container
+            borderRadius: 8,
+            borderRadiusLG: 12,
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 14,
+            fontSizeLG: 16,
+            boxShadowTertiary: '0 1px 2px 0 rgba(0,0,0,0.03)',
+          },
+          components: {
+            Layout: {
+              headerBg: '#ffffff',
+              siderBg: '#ffffff',
+              headerHeight: 64,
+            },
+            Table: {
+              headerBg: '#f2f4f7',
+              rowHoverBg: '#f7f9fc',
+              borderColor: '#c1c6d7',
+            },
+            Card: {
+              paddingLG: 24,
+            },
+            Menu: {
+              itemBorderRadius: 8,
+            },
+          },
+        }}
+      >
+        <AntdApp>
+          <AuthProvider>
+            <UIProvider>
+              <RouterProvider router={router} />
+            </UIProvider>
+          </AuthProvider>
+        </AntdApp>
+      </ConfigProvider>
+    </QueryClientProvider>
+  );
+};
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
-}
-
-export default App
+export default App;
