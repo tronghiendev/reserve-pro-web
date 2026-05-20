@@ -32,25 +32,25 @@ export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: token.paddingXS, flex: 1, marginRight: token.paddingSM }}>
           <Space wrap size={[8, 4]}>
-            <BookingStatusTag startTime={booking.startTime} endTime={booking.endTime} />
+            <BookingStatusTag startTime={booking.start_time} endTime={booking.end_time} />
             <Text type="secondary" style={{ fontSize: '12px' }}>
               <CalendarOutlined style={{ marginRight: '4px' }} />
-              {formatDate(booking.startTime)} ({formatTime(booking.startTime)} - {formatTime(booking.endTime)})
+              {formatDate(booking.start_time)} ({formatTime(booking.start_time)} - {formatTime(booking.end_time)})
             </Text>
           </Space>
           
           <Title level={5} style={{ margin: `${token.paddingXS}px 0 0 0`, fontSize: '16px', fontWeight: 600 }}>
-            Reservation Host: {booking.guestName}
+            Reservation Host: {booking.user_name}
           </Title>
 
           <Space style={{ marginTop: '4px', fontSize: '13px' }} size="small">
             <UserOutlined style={{ color: token.colorTextSecondary }} />
-            <Text type="secondary">{booking.guestName}</Text>
+            <Text type="secondary">{booking.user_name}</Text>
           </Space>
         </div>
 
         <div style={{ alignSelf: 'center' }}>
-          <DeleteBookingAction bookingId={booking.id} guestName={booking.guestName} />
+          <DeleteBookingAction bookingId={booking.id} guestName={booking.user_name} />
         </div>
       </div>
     </Card>

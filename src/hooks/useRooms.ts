@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchRooms } from '../mocks/services';
+import { fetchRoomsApi } from '../services/room.service';
 import { useUI } from '../contexts/UIContext';
 import { useEffect } from 'react';
 
@@ -8,7 +8,7 @@ export const useRooms = () => {
 
   const query = useQuery({
     queryKey: ['rooms'],
-    queryFn: fetchRooms,
+    queryFn: fetchRoomsApi,
     staleTime: 5 * 60 * 1000, // Cache for 5 minutes
   });
 

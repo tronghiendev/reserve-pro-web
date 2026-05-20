@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createBooking } from '../mocks/services';
+import { createBookingApi } from '../services/booking.service';
 import { useUI } from '../contexts/UIContext';
 
 export const useCreateBooking = () => {
@@ -7,10 +7,10 @@ export const useCreateBooking = () => {
   const { selectedRoomId } = useUI();
 
   return useMutation({
-    mutationFn: createBooking,
+    mutationFn: createBookingApi,
     onSuccess: () => {
       // Invalidate specific room bookings query
-      if (selectedRoomId) {
+      if (selectedRoomId !== null) {
         queryClient.invalidateQueries({ queryKey: ['bookings', selectedRoomId] });
       }
     },

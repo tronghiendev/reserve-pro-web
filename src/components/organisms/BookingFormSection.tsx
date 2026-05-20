@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Form, Button, Typography, App, theme } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import type { Dayjs } from 'dayjs';
+import axios from 'axios';
 import { useUI } from '../../contexts/UIContext';
 import { useCreateBooking } from '../../hooks/useCreateBooking';
 import { BookingFormFields } from '../molecules/BookingFormFields';
@@ -22,7 +23,7 @@ export const BookingFormSection: React.FC = () => {
   const { message } = App.useApp();
 
   const onFinish = async (values: BookingFormValues) => {
-    if (!selectedRoomId) {
+    if (selectedRoomId === null) {
       message.error('Please select a room first');
       return;
     }
@@ -31,18 +32,43 @@ export const BookingFormSection: React.FC = () => {
     const [start, end] = reservationTime;
 
     const payload = {
-      roomId: selectedRoomId,
-      guestName,
-      startTime: start.toISOString(),
-      endTime: end.toISOString(),
+      room_id: selectedRoomId,
+      user_name: guestName,
+      start_time: start.format('YYYY-MM-DD HH:mm:ss'),
+      end_time: end.format('YYYY-MM-DD HH:mm:ss'),
     };
 
     try {
       await createBooking(payload);
       message.success('Successfully reserved the room!');
       form.resetFields();
-    } catch {
-      message.error('Failed to create reservation');
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response?.status === 422) {
+        const errors = error.response.data?.errors;
+        let errorMessage = error.response.data?.message || 'The room is already booked for this time period.';
+        
+        // Trích xuất lỗi cụ thể cho start_time/end_time từ errors của Laravel nếu có
+        if (errors) {
+          if (errors.start_time) {
+            errorMessage = errors.start_time[0];
+          } else if (errors.end_time) {
+            errorMessage = errors.end_time[0];
+          } else if (errors.room_id) {
+            errorMessage = errors.room_id[0];
+          } else if (errors.user_name) {
+            errorMessage = errors.user_name[0];
+          }
+        }
+        
+        form.setFields([
+          {
+            name: 'reservationTime',
+            errors: [errorMessage],
+          },
+        ]);
+      } else {
+        message.error('Failed to create reservation');
+      }
     }
   };
 

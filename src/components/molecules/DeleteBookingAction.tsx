@@ -4,7 +4,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { useDeleteBooking } from '../../hooks/useDeleteBooking';
 
 interface DeleteBookingActionProps {
-  bookingId: string;
+  bookingId: number;
   guestName: string;
 }
 

@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
 
 interface UIContextValue {
-  selectedRoomId: string | null;
-  selectRoom: (roomId: string) => void;
+  selectedRoomId: number | null;
+  selectRoom: (roomId: number) => void;
   isDrawerOpen: boolean;
   setIsDrawerOpen: (open: boolean) => void;
 }
@@ -10,10 +10,10 @@ interface UIContextValue {
 const UIContext = createContext<UIContextValue | undefined>(undefined);
 
 export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [selectedRoomId, setSelectedRoomId] = useState<string | null>(null);
+  const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const selectRoom = (roomId: string) => {
+  const selectRoom = (roomId: number) => {
     setSelectedRoomId(roomId);
     setIsDrawerOpen(false); // Close drawer automatically when a room is selected
   };

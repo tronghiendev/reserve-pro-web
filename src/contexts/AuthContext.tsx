@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
 import type { AuthUser } from '../types';
-import { loginUser } from '../mocks/services';
+import { loginApi } from '../services/auth.service';
 
 interface AuthContextValue {
   user: AuthUser | null;
   isAuthenticated: boolean;
-  login: (username: string, password: string) => Promise<boolean>;
+  login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
   loading: boolean;
 }
@@ -26,19 +26,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
   const loading = false;
 
-  const login = async (username: string, password: string): Promise<boolean> => {
-    const matchedUser = await loginUser(username, password);
-    if (matchedUser) {
-      setUser(matchedUser);
-      localStorage.setItem('reserve_pro_user', JSON.stringify(matchedUser));
-      return true;
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      const response = await loginApi(email, password);
+      if (response && response.token) {
+        localStorage.setItem('reserve_pro_token', response.token);
+        
+        // Tạo object user từ email đăng nhập vì backend không trả về thông tin user
+        const loggedUser: AuthUser = {
+          id: 1, // Dummy ID
+          email: email,
+          name: email.split('@')[0],
+        };
+        
+        setUser(loggedUser);
+        localStorage.setItem('reserve_pro_user', JSON.stringify(loggedUser));
+        return true;
+      }
+      return false;
+    } catch {
+      return false;
     }
-    return false;
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('reserve_pro_user');
+    localStorage.removeItem('reserve_pro_token');
   };
 
   return (

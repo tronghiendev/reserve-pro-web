@@ -1,20 +1,20 @@
 export interface Room {
-  id: string;
+  id: number;
   name: string;
   capacity: number;
 }
 
 export interface Booking {
-  id: string;
-  roomId: string;
-  guestName: string;
-  startTime: string;   // ISO 8601
-  endTime: string;     // ISO 8601
+  id: number;
+  room_id: number;
+  user_name: string;
+  start_time: string;   // format "YYYY-MM-DD HH:mm:ss"
+  end_time: string;     // format "YYYY-MM-DD HH:mm:ss"
+  created_at?: string;
 }
 
 export interface AuthUser {
-  id: string;
-  username: string;
-  displayName: string;
-  avatarUrl?: string;
+  id: number;
+  email: string;
+  name: string;
 }

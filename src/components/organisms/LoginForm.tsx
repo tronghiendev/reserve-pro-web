@@ -7,7 +7,7 @@ import { useAuth } from '../../contexts/AuthContext';
 const { useToken } = theme;
 
 interface LoginFormValues {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -21,12 +21,12 @@ export const LoginForm: React.FC = () => {
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true);
     try {
-      const success = await login(values.username, values.password);
+      const success = await login(values.email, values.password);
       if (success) {
         message.success('Welcome back to ReservePro!');
         navigate('/', { replace: true });
       } else {
-        message.error('Invalid username or password. Try admin / admin123');
+        message.error('Invalid email or password.');
       }
     } catch {
       message.error('An error occurred during authentication.');
@@ -44,15 +44,18 @@ export const LoginForm: React.FC = () => {
       style={{ width: '100%' }}
     >
       <Form.Item
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: 'Please enter your username' }]}
+        label="Email"
+        name="email"
+        rules={[
+          { required: true, message: 'Please enter your email' },
+          { type: 'email', message: 'Please enter a valid email address' }
+        ]}
       >
         <Input
           prefix={<UserOutlined style={{ color: token.colorTextSecondary }} />}
-          placeholder="Enter your username (e.g. admin)"
+          placeholder="Enter your email (e.g. admin@example.com)"
           size="large"
-          autoComplete="username"
+          autoComplete="email"
           style={{ borderRadius: token.borderRadius }}
         />
       </Form.Item>

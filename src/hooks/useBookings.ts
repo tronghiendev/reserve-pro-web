@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchBookingsByRoom } from '../mocks/services';
+import { fetchBookingsByRoomApi } from '../services/room.service';
 
-export const useBookings = (roomId: string | null) => {
+export const useBookings = (roomId: number | null) => {
   return useQuery({
     queryKey: ['bookings', roomId],
-    queryFn: () => fetchBookingsByRoom(roomId!),
+    queryFn: () => fetchBookingsByRoomApi(roomId!),
     enabled: !!roomId,
   });
 };

@@ -20,21 +20,21 @@ export const BookingTable: React.FC = () => {
   const columns = [
     {
       title: 'Host / Guest Name',
-      dataIndex: 'guestName',
-      key: 'guestName',
+      dataIndex: 'user_name',
+      key: 'user_name',
       fontWeight: 600,
       render: (text: string) => <Text style={{ fontWeight: 600 }}>{text}</Text>,
     },
     {
       title: 'Start Time',
-      dataIndex: 'startTime',
-      key: 'startTime',
+      dataIndex: 'start_time',
+      key: 'start_time',
       render: (text: string) => <Text type="secondary">{formatTime(text)}</Text>,
     },
     {
       title: 'End Time',
-      dataIndex: 'endTime',
-      key: 'endTime',
+      dataIndex: 'end_time',
+      key: 'end_time',
       render: (text: string) => <Text type="secondary">{formatTime(text)}</Text>,
     },
     {
@@ -43,7 +43,7 @@ export const BookingTable: React.FC = () => {
       width: 80,
       align: 'center' as const,
       render: (_: unknown, record: Booking) => (
-        <DeleteBookingAction bookingId={record.id} guestName={record.guestName} />
+        <DeleteBookingAction bookingId={record.id} guestName={record.user_name} />
       ),
     },
   ];

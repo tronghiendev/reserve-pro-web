@@ -57,11 +57,13 @@ export const TopNavBar: React.FC = () => {
 
         {user && (
           <Space size={token.paddingXS}>
-            <Avatar src={user.avatarUrl} alt={user.displayName} style={{ border: `1px solid ${token.colorBorder}` }} />
+            <Avatar alt={user.name} style={{ border: `1px solid ${token.colorBorder}` }}>
+              {user.name.charAt(0).toUpperCase()}
+            </Avatar>
             {showUsername && (
               <>
                 <Text style={{ fontWeight: 600, color: token.colorTextBase }}>
-                  {user.displayName}
+                  {user.name}
                 </Text>
                 <span style={{ color: token.colorBorder, margin: '0 4px' }}>|</span>
                 <Button
