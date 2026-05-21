@@ -2,67 +2,55 @@
   display: flex;
   min-height: 100vh;
   width: 100vw;
-  background-color: #ffffff;
-  overflow: hidden;
+  background-color: #f7f9fc;
+  overflow-x: hidden;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 16px;
+  box-sizing: border-box;
 }
 
-.brandPanel {
-  flex: 1;
-  background: linear-gradient(135deg, #0057c2 0%, #003d8a 100%);
+.mainContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 64px;
-  color: #ffffff;
-  position: relative;
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.headerContainer {
+  width: 100%;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .formPanel {
   width: 100%;
-  max-width: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 64px 48px;
   background-color: #ffffff;
-  position: relative;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .formContainer {
   width: 100%;
-  max-width: 400px;
 }
 
-/* Background circles for premium look */
-.decorCircle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.03);
-  pointer-events: none;
-}
-
-.circle1 {
-  width: 500px;
-  height: 500px;
-  top: -150px;
-  left: -150px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
-}
-
-.circle2 {
-  width: 300px;
-  height: 300px;
-  bottom: -50px;
-  right: -50px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 70%);
-}
-
-@media (max-width: 992px) {
-  .brandPanel {
-    display: none;
-  }
-  .formPanel {
-    max-width: 100%;
-  }
+.footerContainer {
+  width: 100%;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }

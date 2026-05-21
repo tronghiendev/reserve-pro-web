@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Typography, App, DatePicker, TimePicker, Row, Col, Alert } from 'antd';
-import { CalendarOutlined, ClockCircleOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { CalendarOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import axios from 'axios';
@@ -9,7 +9,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useCreateBooking } from '../../hooks/useCreateBooking';
 import styles from './BookingFormSection.module.css';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 interface BookingFormValues {
   title: string;
@@ -25,6 +25,14 @@ export const BookingFormSection: React.FC = () => {
   const { mutateAsync: createBooking, isPending } = useCreateBooking();
   const [form] = Form.useForm();
   const { message } = App.useApp();
+  const [error, setError] = useState<string | null>(null);
+  const [prevRoomId, setPrevRoomId] = useState<number | null>(selectedRoomId);
+
+  // Clear error when selected room changes
+  if (selectedRoomId !== prevRoomId) {
+    setPrevRoomId(selectedRoomId);
+    setError(null);
+  }
 
   // Keep hostName input value in sync with authenticated user
   useEffect(() => {
@@ -46,6 +54,17 @@ export const BookingFormSection: React.FC = () => {
     const endStr = `${dateStr} ${endTime.format('HH:mm:00')}`;
 
     // Simple client-side validation
+    const startDateTime = dayjs(`${date.format('YYYY-MM-DD')} ${startTime.format('HH:mm:00')}`);
+    if (startDateTime.isBefore(dayjs().subtract(1, 'minute'))) {
+      form.setFields([
+        {
+          name: 'startTime',
+          errors: ['Start time cannot be in the past.'],
+        },
+      ]);
+      return;
+    }
+
     if (endTime.isBefore(startTime) || endTime.isSame(startTime)) {
       form.setFields([
         {
@@ -65,17 +84,18 @@ export const BookingFormSection: React.FC = () => {
     };
 
     try {
+      setError(null);
       await createBooking(payload);
       message.success('Successfully reserved the room!');
       form.resetFields(['title', 'startTime', 'endTime']);
       if (user) {
         form.setFieldsValue({ hostName: user.name });
       }
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error) && error.response?.status === 422) {
-        const errors = error.response.data?.errors;
-        let errorMessage = error.response.data?.message || 'The room is already booked for this time period.';
-        
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err) && err.response?.status === 422) {
+        const errors = err.response.data?.errors;
+        let errorMessage = err.response.data?.message || 'The room is already booked for this time period.';
+
         if (errors) {
           if (errors.start_time) {
             errorMessage = errors.start_time[0];
@@ -87,13 +107,8 @@ export const BookingFormSection: React.FC = () => {
             errorMessage = errors.user_name[0];
           }
         }
-        
-        form.setFields([
-          {
-            name: 'startTime',
-            errors: [errorMessage],
-          },
-        ]);
+
+        setError(errorMessage);
       } else {
         message.error('Failed to create reservation');
       }
@@ -106,10 +121,22 @@ export const BookingFormSection: React.FC = () => {
         Quick Reserve
       </Title>
 
+      {error && (
+        <Alert
+          title={error}
+          type="error"
+          showIcon
+          closable
+          onClose={() => setError(null)}
+          style={{ marginBottom: 16 }}
+        />
+      )}
+
       <Form
         form={form}
         layout="vertical"
         onFinish={onFinish}
+        onValuesChange={() => setError(null)}
         requiredMark={false}
         initialValues={{
           date: dayjs(),
@@ -138,9 +165,10 @@ export const BookingFormSection: React.FC = () => {
           rules={[{ required: true, message: 'Please select a date' }]}
         >
           <DatePicker
-            format="YYYY-MM-DD"
+            format="DD/MM/YYYY"
             style={{ width: '100%' }}
             suffixIcon={<CalendarOutlined style={{ color: '#5e5e5e' }} />}
+            disabledDate={(current) => current && current.isBefore(dayjs().startOf('day'))}
           />
         </Form.Item>
 
@@ -186,21 +214,6 @@ export const BookingFormSection: React.FC = () => {
           Confirm Booking
         </Button>
       </Form>
-
-      <Alert
-        className={styles.tipBox}
-        message="Booking Tip"
-        description="Peak hours are between 10:00 AM and 2:00 PM. Book in advance to secure your spot."
-        type="info"
-        showIcon={true}
-        icon={<InfoCircleOutlined style={{ color: '#0057c2' }} />}
-      />
-
-      <div className={styles.disclaimer}>
-        <Text type="secondary" className={styles.disclaimer}>
-          By clicking you agree to workspace policies
-        </Text>
-      </div>
     </div>
   );
 };

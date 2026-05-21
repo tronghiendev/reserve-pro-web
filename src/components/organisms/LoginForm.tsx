@@ -17,20 +17,22 @@ export const LoginForm: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { message } = App.useApp();
 
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true);
+    setError(null);
     try {
       const success = await login(values.email, values.password);
       if (success) {
         message.success('Welcome back to ReservePro!');
         navigate('/', { replace: true });
       } else {
-        message.error('Invalid email or password.');
+        setError('Invalid email or password.');
       }
-    } catch {
-      message.error('An error occurred during authentication.');
+    } catch (err: any) {
+      setError(err.message || 'An error occurred during authentication.');
     } finally {
       setLoading(false);
     }
@@ -38,6 +40,17 @@ export const LoginForm: React.FC = () => {
 
   return (
     <div style={{ width: '100%' }}>
+      {error && (
+        <Alert
+          title={error}
+          type="error"
+          showIcon
+          closable
+          onClose={() => setError(null)}
+          className={styles.alertBox}
+          style={{ marginBottom: 24, marginTop: 0 }}
+        />
+      )}
       <Form
         name="login_form"
         layout="vertical"
@@ -95,24 +108,6 @@ export const LoginForm: React.FC = () => {
           </Button>
         </Form.Item>
       </Form>
-
-      <Alert
-        className={styles.alertBox}
-        message="Demo Credentials"
-        description={
-          <div>
-            Use <strong>admin@example.com</strong> / <strong>admin123</strong> to sign in.
-          </div>
-        }
-        type="info"
-        showIcon
-      />
-
-      <div className={styles.footer}>
-        <Link href="#privacy" className={styles.footerLink}>Privacy Policy</Link>
-        <span className={styles.divider}>•</span>
-        <Link href="#terms" className={styles.footerLink}>Terms of Service</Link>
-      </div>
     </div>
   );
 };

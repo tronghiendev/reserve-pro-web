@@ -15,7 +15,7 @@ export const RoomIcon: React.FC<RoomIconProps> = ({ active = false }) => {
     <HomeOutlined
       style={{
         fontSize: '18px',
-        color: active ? token.colorWhite : token.colorPrimary,
+        color: active ? token.colorPrimary : token.colorTextSecondary,
         transition: 'color 0.2s ease',
       }}
     />

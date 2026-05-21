@@ -28,7 +28,7 @@ apiClient.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response?.status === 401) {
+    if (error.response?.status === 401 && !error.config?.url?.includes('/login')) {
       localStorage.removeItem('reserve_pro_token');
       localStorage.removeItem('reserve_pro_user');
       window.location.href = '/login';

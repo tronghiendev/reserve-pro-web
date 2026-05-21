@@ -7,6 +7,8 @@ import {
   SoundOutlined,
   CoffeeOutlined,
   ProjectOutlined,
+  EditOutlined,
+  CloudOutlined,
   TeamOutlined
 } from '@ant-design/icons';
 import type { Room } from '../../types';
@@ -38,6 +40,12 @@ const getAmenityIcon = (name: string) => {
   }
   if (normalized.includes('coffee') || normalized.includes('tea') || normalized.includes('bar')) {
     return <CoffeeOutlined />;
+  }
+  if (normalized.includes('whiteboard') || normalized.includes('board')) {
+    return <EditOutlined />;
+  }
+  if (normalized.includes('ac') || normalized.includes('air') || normalized.includes('cool')) {
+    return <CloudOutlined />;
   }
   return <TeamOutlined />;
 };

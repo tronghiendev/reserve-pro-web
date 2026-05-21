@@ -35,7 +35,7 @@ export const BookingFormFields: React.FC = () => {
         >
           <RangePicker
             showTime={{ format: 'HH:mm' }}
-            format="YYYY-MM-DD HH:mm"
+            format="DD/MM/YYYY HH:mm"
             placeholder={['Start Date & Time', 'End Date & Time']}
             size="large"
             style={{ width: '100%', borderRadius: token.borderRadius }}

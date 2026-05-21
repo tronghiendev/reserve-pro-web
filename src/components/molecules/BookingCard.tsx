@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import type { Booking } from '../../types';
 import { BookingStatusTag } from '../atoms/BookingStatusTag';
 import { DeleteBookingAction } from './DeleteBookingAction';
+import { useAuth } from '../../contexts/AuthContext';
 
 const { Text, Title } = Typography;
 const { useToken } = theme;
@@ -15,8 +16,9 @@ interface BookingCardProps {
 
 export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
   const { token } = useToken();
+  const { user } = useAuth();
   const formatTime = (timeStr: string) => dayjs(timeStr).format('HH:mm');
-  const formatDate = (timeStr: string) => dayjs(timeStr).format('MMM DD, YYYY');
+  const formatDate = (timeStr: string) => dayjs(timeStr).format('DD/MM/YYYY');
 
   return (
     <Card
@@ -49,9 +51,11 @@ export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
           </Space>
         </div>
 
-        <div style={{ alignSelf: 'center' }}>
-          <DeleteBookingAction bookingId={booking.id} guestName={booking.user_name} />
-        </div>
+        {user && booking.user_name === user.name && (
+          <div style={{ alignSelf: 'center' }}>
+            <DeleteBookingAction bookingId={booking.id} guestName={booking.user_name} />
+          </div>
+        )}
       </div>
     </Card>
   );

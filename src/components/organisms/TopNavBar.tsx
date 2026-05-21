@@ -1,6 +1,6 @@
 import React from 'react';
-import { Layout, Avatar, Button, Typography, Input, Badge, Dropdown, Space } from 'antd';
-import { AppstoreOutlined, BellOutlined, QuestionCircleOutlined, SearchOutlined, DownOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Layout, Avatar, Typography, Dropdown, Space } from 'antd';
+import { DownOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useAuth } from '../../contexts/AuthContext';
 import { useResponsive } from '../../hooks/useResponsive';
 import styles from './TopNavBar.module.css';
@@ -41,7 +41,7 @@ export const TopNavBar: React.FC = () => {
       <div className={styles.brandBox}>
         <Avatar
           size={36}
-          icon={<AppstoreOutlined style={{ fontSize: '18px', color: '#ffffff' }} />}
+          src="/logo.png"
           className={styles.logoAvatar}
         />
         <Title level={4} className={styles.brandTitle} style={{ fontSize: isMobile ? '18px' : '20px' }}>
@@ -49,23 +49,8 @@ export const TopNavBar: React.FC = () => {
         </Title>
       </div>
 
-      {/* Middle: Search Bar (hidden on mobile) */}
-      {!isMobile && (
-        <Input
-          prefix={<SearchOutlined style={{ color: '#5e5e5e' }} />}
-          placeholder="Search rooms, bookings..."
-          className={styles.searchBar}
-          size="middle"
-        />
-      )}
-
       {/* Right: Actions / User Profile */}
       <div className={styles.rightSection}>
-        <Badge dot color="#0057c2" offset={[-2, 6]}>
-          <Button type="text" shape="circle" icon={<BellOutlined />} className={styles.iconButton} />
-        </Badge>
-        <Button type="text" shape="circle" icon={<QuestionCircleOutlined />} className={styles.iconButton} />
-
         {user && (
           <Dropdown
             menu={{ items: userMenuItems, onClick: handleMenuClick }}
@@ -94,3 +79,4 @@ export const TopNavBar: React.FC = () => {
 };
 
 export default TopNavBar;
+

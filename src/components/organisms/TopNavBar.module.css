@@ -19,7 +19,7 @@
 }
 
 .logoAvatar {
-  background-color: #fa8c16 !important; /* warning color */
+  background-color: transparent !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -32,26 +32,10 @@
   letter-spacing: -0.5px !important;
 }
 
-.searchBar {
-  width: 400px;
-  border-radius: 20px !important;
-  background-color: #f2f4f7 !important;
-  border: none !important;
-}
-
-.searchBar :global(.ant-input) {
-  background-color: transparent !important;
-}
-
 .rightSection {
   display: flex;
   align-items: center;
   gap: 20px;
-}
-
-.iconButton {
-  color: #5e5e5e !important;
-  font-size: 16px !important;
 }
 
 .userSpace {
@@ -59,10 +43,6 @@
   padding: 4px 8px;
   border-radius: 8px;
   transition: background-color 0.2s;
-}
-
-.userSpace:hover {
-  background-color: #f2f4f7;
 }
 
 .userName {
@@ -75,8 +55,3 @@
   color: #5e5e5e;
 }
 
-@media (max-width: 768px) {
-  .searchBar {
-    display: none !important;
-  }
-}

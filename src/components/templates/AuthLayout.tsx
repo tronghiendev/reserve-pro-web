@@ -3,24 +3,22 @@ import styles from './AuthLayout.module.css';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
-  brandContent?: React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
 }
 
-export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, brandContent }) => {
+export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, header, footer }) => {
   return (
     <div className={styles.wrapper}>
-      {brandContent && (
-        <div className={styles.brandPanel}>
-          <div className={`${styles.decorCircle} ${styles.circle1}`} />
-          <div className={`${styles.decorCircle} ${styles.circle2}`} />
-          {brandContent}
+      <main className={styles.mainContainer}>
+        {header && <div className={styles.headerContainer}>{header}</div>}
+        <div className={styles.formPanel}>
+          <div className={styles.formContainer}>
+            {children}
+          </div>
         </div>
-      )}
-      <div className={styles.formPanel}>
-        <div className={styles.formContainer}>
-          {children}
-        </div>
-      </div>
+        {footer && <div className={styles.footerContainer}>{footer}</div>}
+      </main>
     </div>
   );
 };

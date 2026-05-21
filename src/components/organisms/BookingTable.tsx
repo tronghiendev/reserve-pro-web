@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import type { Booking } from '../../types';
 import { useBookings } from '../../hooks/useBookings';
 import { useUI } from '../../contexts/UIContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { DeleteBookingAction } from '../molecules/DeleteBookingAction';
 import { LoadingSpinner } from '../atoms/LoadingSpinner';
 import styles from './BookingTable.module.css';
@@ -12,6 +13,7 @@ const { Text, Title } = Typography;
 
 export const BookingTable: React.FC = () => {
   const { selectedRoomId } = useUI();
+  const { user } = useAuth();
   const { data: bookings, isLoading, isError } = useBookings(selectedRoomId);
   const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs>(dayjs());
 
@@ -91,9 +93,12 @@ export const BookingTable: React.FC = () => {
       key: 'action',
       width: 80,
       align: 'center' as const,
-      render: (_: unknown, record: Booking) => (
-        <DeleteBookingAction bookingId={record.id} guestName={record.user_name} />
-      ),
+      render: (_: unknown, record: Booking) => {
+        const isOwner = user && record.user_name === user.name;
+        return isOwner ? (
+          <DeleteBookingAction bookingId={record.id} guestName={record.user_name} />
+        ) : null;
+      },
     },
   ];
 
@@ -108,7 +113,7 @@ export const BookingTable: React.FC = () => {
           onChange={(date) => date && setSelectedDate(date)}
           className={styles.datePicker}
           allowClear={false}
-          format="YYYY-MM-DD"
+          format="DD/MM/YYYY"
         />
       </div>
 

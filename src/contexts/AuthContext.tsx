@@ -44,8 +44,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return true;
       }
       return false;
-    } catch {
-      return false;
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Invalid email or password';
+      throw new Error(message);
     }
   };
 
