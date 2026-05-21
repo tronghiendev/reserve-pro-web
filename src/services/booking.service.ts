@@ -4,6 +4,7 @@ import type { Booking } from '../types';
 export interface CreateBookingPayload {
   room_id: number;
   user_name: string;
+  title?: string;
   start_time: string; // "YYYY-MM-DD HH:mm:ss"
   end_time: string;   // "YYYY-MM-DD HH:mm:ss"
 }

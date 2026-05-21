@@ -1,39 +1,46 @@
 import React from 'react';
-import { Typography, theme } from 'antd';
+import { Typography, Button, Divider } from 'antd';
+import { DashboardOutlined, FilterOutlined, CalendarOutlined, SettingOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { useRooms } from '../../hooks/useRooms';
 import { useUI } from '../../contexts/UIContext';
 import { RoomListItem } from '../molecules/RoomListItem';
 import { LoadingSpinner } from '../atoms/LoadingSpinner';
+import styles from './RoomSidebar.module.css';
 
 const { Title, Text } = Typography;
-const { useToken } = theme;
 
 export const RoomSidebar: React.FC = () => {
-  const { token } = useToken();
   const { data: rooms, isLoading, isError } = useRooms();
   const { selectedRoomId, selectRoom } = useUI();
 
+  // If selectedRoomId is null, it means we are on the main Dashboard view.
+  const isDashboardActive = selectedRoomId === null;
+
   return (
-    <div
-      style={{
-        padding: `${token.paddingLG}px ${token.padding}px`,
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: `${token.padding}px`,
-        background: token.colorBgContainer,
-      }}
-    >
-      <div>
-        <Title level={4} style={{ margin: 0, fontWeight: 700, letterSpacing: '-0.01em' }}>
-          Rooms
+    <div className={styles.container}>
+      {/* Sidebar Header */}
+      <div className={styles.header}>
+        <Title level={4} className={styles.title}>
+          Meeting Rooms
         </Title>
-        <Text type="secondary" style={{ fontSize: '13px' }}>
-          Select a room to view schedules
-        </Text>
+        <Button type="text" shape="circle" icon={<FilterOutlined />} className={styles.filterBtn} />
       </div>
 
-      <div style={{ flex: 1, overflowY: 'auto', marginRight: '-8px', paddingRight: '8px' }}>
+      {/* Main Navigation Section */}
+      <div className={styles.navSection}>
+        <div
+          className={`${styles.navItem} ${isDashboardActive ? styles.navItemActive : ''}`}
+          onClick={() => selectRoom(null)} // Select null to return to main dashboard
+        >
+          <DashboardOutlined className={styles.navIcon} />
+          <span>Dashboard</span>
+        </div>
+      </div>
+
+      <Divider className={styles.divider} />
+
+      {/* Rooms List Section */}
+      <div className={styles.listScroll}>
         {isLoading && <LoadingSpinner tip="Loading rooms..." />}
         
         {isError && (
@@ -43,7 +50,7 @@ export const RoomSidebar: React.FC = () => {
         )}
 
         {!isLoading && !isError && rooms && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <div className={styles.listContainer}>
             {rooms.map((room) => (
               <RoomListItem
                 key={room.id}
@@ -55,6 +62,29 @@ export const RoomSidebar: React.FC = () => {
           </div>
         )}
       </div>
+
+      <Divider className={styles.divider} />
+
+      {/* Bottom Nav & Footer */}
+      <div className={styles.footerSection}>
+        <div className={styles.navItem}>
+          <CalendarOutlined className={styles.navIcon} />
+          <span>My Bookings</span>
+        </div>
+        <div className={styles.navItem}>
+          <SettingOutlined className={styles.navIcon} />
+          <span>Settings</span>
+        </div>
+        
+        <Divider className={styles.divider} />
+        
+        <div className={styles.navItem}>
+          <QuestionCircleOutlined className={styles.navIcon} />
+          <span>Help Center</span>
+        </div>
+      </div>
     </div>
   );
 };
+
+export default RoomSidebar;

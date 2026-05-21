@@ -1,42 +1,25 @@
 import React from 'react';
-import { theme } from 'antd';
-
-const { useToken } = theme;
+import styles from './AuthLayout.module.css';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
+  brandContent?: React.ReactNode;
 }
 
-export const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
-  const { token } = useToken();
-
+export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, brandContent }) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        width: '100vw',
-        background: token.colorBgBase,
-        padding: token.padding,
-      }}
-    >
-      <div
-        style={{
-          width: '100%',
-          maxWidth: '440px',
-          background: token.colorBgContainer,
-          borderRadius: token.borderRadiusLG * 1.5,
-          border: `1px solid ${token.colorBorder}`,
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
-          padding: token.paddingLG * 1.5,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        {children}
+    <div className={styles.wrapper}>
+      {brandContent && (
+        <div className={styles.brandPanel}>
+          <div className={`${styles.decorCircle} ${styles.circle1}`} />
+          <div className={`${styles.decorCircle} ${styles.circle2}`} />
+          {brandContent}
+        </div>
+      )}
+      <div className={styles.formPanel}>
+        <div className={styles.formContainer}>
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -58,6 +58,17 @@ export const App: React.FC = () => {
             Menu: {
               itemBorderRadius: 8,
             },
+            Input: {
+              controlHeight: 40,
+              borderRadius: 8,
+            },
+            Button: {
+              controlHeight: 40,
+              borderRadius: 8,
+            },
+            DatePicker: {
+              controlHeight: 40,
+            },
           },
         }}
       >

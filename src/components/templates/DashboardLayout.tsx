@@ -1,20 +1,20 @@
 import React from 'react';
-import { Layout, Drawer, Button, theme } from 'antd';
+import { Layout, Drawer, Button } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { TopNavBar } from '../organisms/TopNavBar';
 import { RoomSidebar } from '../organisms/RoomSidebar';
 import { useResponsive } from '../../hooks/useResponsive';
 import { useUI } from '../../contexts/UIContext';
+import styles from './DashboardLayout.module.css';
 
 const { Content, Sider } = Layout;
-const { useToken } = theme;
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
+  rightPanel?: React.ReactNode;
 }
 
-export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
-  const { token } = useToken();
+export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, rightPanel }) => {
   const {
     hasSider,
     siderWidth,
@@ -26,29 +26,22 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
   const { isDrawerOpen, setIsDrawerOpen } = useUI();
 
   return (
-    <Layout style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <Layout className={styles.layout}>
       <TopNavBar />
       
-      <Layout style={{ flex: 1, position: 'relative' }}>
-        {/* Desktop / Laptop Sidebar */}
+      <Layout className={styles.innerLayout}>
+        {/* Left Desktop Sidebar */}
         {hasSider && (
           <Sider
             width={siderWidth}
             theme="light"
-            style={{
-              borderRight: `1px solid ${token.colorBorder}`,
-              height: 'calc(100vh - 64px)',
-              position: 'sticky',
-              top: '64px',
-              left: 0,
-              overflowY: 'auto',
-            }}
+            className={styles.leftSider}
           >
             <RoomSidebar />
           </Sider>
         )}
 
-        {/* Mobile / Tablet Drawer Sidebar */}
+        {/* Left Mobile Drawer */}
         {!hasSider && (
           <Drawer
             placement="left"
@@ -64,28 +57,37 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
 
         {/* Main Content Pane */}
         <Content
-          style={{
-            padding: `${contentPad}px`,
-            background: token.colorBgBase,
-            overflowY: 'auto',
-            height: 'calc(100vh - 64px)',
-          }}
+          className={styles.content}
+          style={{ padding: `${contentPad}px` }}
         >
           <div
-            style={{
-              maxWidth,
-              margin: '0 auto',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: `${token.paddingLG}px`,
-            }}
+            className={styles.contentWrapper}
+            style={{ maxWidth }}
           >
             {children}
+            
+            {/* On mobile/tablet, render the rightPanel content at the bottom of the page */}
+            {!hasSider && rightPanel && (
+              <div className={styles.mobileRightPanel}>
+                {rightPanel}
+              </div>
+            )}
           </div>
         </Content>
+
+        {/* Right Desktop Sider */}
+        {hasSider && rightPanel && (
+          <Sider
+            width={320}
+            theme="light"
+            className={styles.rightSider}
+          >
+            {rightPanel}
+          </Sider>
+        )}
       </Layout>
 
-      {/* Floating Action Button (FAB) for Mobile / Tablet */}
+      {/* Floating Action Button (FAB) for Mobile / Tablet to open RoomSidebar */}
       {!hasSider && (
         <Button
           type="primary"
@@ -93,21 +95,11 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
           size="large"
           icon={<MenuOutlined style={{ fontSize: '20px' }} />}
           onClick={() => setIsDrawerOpen(true)}
-          style={{
-            position: 'fixed',
-            bottom: '24px',
-            right: '24px',
-            width: '56px',
-            height: '56px',
-            borderRadius: '28px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 99,
-          }}
+          className={styles.fab}
         />
       )}
     </Layout>
   );
 };
+
+export default DashboardLayout;

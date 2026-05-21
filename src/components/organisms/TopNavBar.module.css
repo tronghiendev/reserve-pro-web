@@ -1,0 +1,82 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-bottom: 1px solid #c1c6d7;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.brandBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.logoAvatar {
+  background-color: #fa8c16 !important; /* warning color */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.brandTitle {
+  margin: 0 !important;
+  color: #0057c2 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px !important;
+}
+
+.searchBar {
+  width: 400px;
+  border-radius: 20px !important;
+  background-color: #f2f4f7 !important;
+  border: none !important;
+}
+
+.searchBar :global(.ant-input) {
+  background-color: transparent !important;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.iconButton {
+  color: #5e5e5e !important;
+  font-size: 16px !important;
+}
+
+.userSpace {
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.userSpace:hover {
+  background-color: #f2f4f7;
+}
+
+.userName {
+  font-weight: 600;
+  color: #191c1e;
+}
+
+.downIcon {
+  font-size: 10px;
+  color: #5e5e5e;
+}
+
+@media (max-width: 768px) {
+  .searchBar {
+    display: none !important;
+  }
+}

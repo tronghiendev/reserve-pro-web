@@ -1,95 +1,96 @@
 import React from 'react';
-import { Layout, Avatar, Button, Space, Typography, theme } from 'antd';
-import { BookOutlined, LogoutOutlined, BellOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { Layout, Avatar, Button, Typography, Input, Badge, Dropdown, Space } from 'antd';
+import { AppstoreOutlined, BellOutlined, QuestionCircleOutlined, SearchOutlined, DownOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useAuth } from '../../contexts/AuthContext';
 import { useResponsive } from '../../hooks/useResponsive';
+import styles from './TopNavBar.module.css';
 
 const { Header } = Layout;
 const { Title, Text } = Typography;
-const { useToken } = theme;
 
 export const TopNavBar: React.FC = () => {
-  const { token } = useToken();
   const { user, logout } = useAuth();
-  const { showUsername, isMobile } = useResponsive();
+  const { isMobile } = useResponsive();
+
+  const handleMenuClick = (e: { key: string }) => {
+    if (e.key === 'logout') {
+      logout();
+    }
+  };
+
+  const userMenuItems = [
+    {
+      key: 'profile',
+      label: 'My Profile',
+      icon: <UserOutlined />,
+    },
+    {
+      type: 'divider' as const,
+    },
+    {
+      key: 'logout',
+      label: 'Logout',
+      icon: <LogoutOutlined />,
+      danger: true,
+    },
+  ];
 
   return (
-    <Header
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: isMobile ? `0 ${token.padding}px` : `0 ${token.paddingLG}px`,
-        background: token.colorBgContainer,
-        borderBottom: `1px solid ${token.colorBorder}`,
-        height: '64px',
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
-        boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.03)',
-      }}
-    >
+    <Header className={styles.header} style={{ padding: isMobile ? '0 16px' : '0 24px' }}>
       {/* Left: Brand Logo & Title */}
-      <Space size={token.paddingXS} style={{ cursor: 'pointer' }}>
-        <BookOutlined style={{ fontSize: '24px', color: token.colorPrimary }} />
-        <Title
-          level={3}
-          style={{
-            margin: 0,
-            color: token.colorPrimary,
-            fontWeight: 700,
-            fontSize: isMobile ? '20px' : '24px',
-            letterSpacing: '-0.02em',
-          }}
-        >
+      <div className={styles.brandBox}>
+        <Avatar
+          size={36}
+          icon={<AppstoreOutlined style={{ fontSize: '18px', color: '#ffffff' }} />}
+          className={styles.logoAvatar}
+        />
+        <Title level={4} className={styles.brandTitle} style={{ fontSize: isMobile ? '18px' : '20px' }}>
           ReservePro
         </Title>
-      </Space>
+      </div>
+
+      {/* Middle: Search Bar (hidden on mobile) */}
+      {!isMobile && (
+        <Input
+          prefix={<SearchOutlined style={{ color: '#5e5e5e' }} />}
+          placeholder="Search rooms, bookings..."
+          className={styles.searchBar}
+          size="middle"
+        />
+      )}
 
       {/* Right: Actions / User Profile */}
-      <Space size={isMobile ? 'small' : 'middle'}>
-        {!isMobile && (
-          <>
-            <Button type="text" shape="circle" icon={<BellOutlined />} />
-            <Button type="text" shape="circle" icon={<QuestionCircleOutlined />} />
-          </>
-        )}
+      <div className={styles.rightSection}>
+        <Badge dot color="#0057c2" offset={[-2, 6]}>
+          <Button type="text" shape="circle" icon={<BellOutlined />} className={styles.iconButton} />
+        </Badge>
+        <Button type="text" shape="circle" icon={<QuestionCircleOutlined />} className={styles.iconButton} />
 
         {user && (
-          <Space size={token.paddingXS}>
-            <Avatar alt={user.name} style={{ border: `1px solid ${token.colorBorder}` }}>
-              {user.name.charAt(0).toUpperCase()}
-            </Avatar>
-            {showUsername && (
-              <>
-                <Text style={{ fontWeight: 600, color: token.colorTextBase }}>
-                  {user.name}
-                </Text>
-                <span style={{ color: token.colorBorder, margin: '0 4px' }}>|</span>
-                <Button
-                  type="text"
-                  danger
-                  icon={<LogoutOutlined />}
-                  onClick={logout}
-                  style={{ fontWeight: 500 }}
-                >
-                  Logout
-                </Button>
-              </>
-            )}
-
-            {!showUsername && (
-              <Button
-                type="text"
-                danger
-                shape="circle"
-                icon={<LogoutOutlined />}
-                onClick={logout}
-              />
-            )}
-          </Space>
+          <Dropdown
+            menu={{ items: userMenuItems, onClick: handleMenuClick }}
+            placement="bottomRight"
+            trigger={['click']}
+          >
+            <Space className={styles.userSpace} size={8}>
+              <Avatar
+                size={32}
+                style={{ backgroundColor: '#0057c2', verticalAlign: 'middle' }}
+              >
+                {user.name.charAt(0).toUpperCase()}
+              </Avatar>
+              {!isMobile && (
+                <>
+                  <Text className={styles.userName}>{user.name}</Text>
+                  <DownOutlined className={styles.downIcon} />
+                </>
+              )}
+            </Space>
+          </Dropdown>
         )}
-      </Space>
+      </div>
     </Header>
   );
 };
+
+export default TopNavBar;
