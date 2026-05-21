@@ -31,8 +31,9 @@ export const LoginForm: React.FC = () => {
       } else {
         setError('Invalid email or password.');
       }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred during authentication.');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred during authentication.';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
