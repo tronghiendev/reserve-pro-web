@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReservePro UI Design Previewer</title>
+  <!-- Tailwind CSS for Previewer Shell -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font import -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0f19;
+      color: #f3f4f6;
+      overflow: hidden;
+    }
+    .glass-panel {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .iframe-container {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .device-button.active {
+      background-color: #1677ff;
+      color: white;
+      border-color: #1677ff;
+    }
+    .page-button.active {
+      border-bottom: 2px solid #1677ff;
+      color: #1677ff;
+    }
+  </style>
+</head>
+<body class="h-screen w-screen flex flex-col">
+  <!-- Top Navigation Control Bar -->
+  <header class="h-16 glass-panel flex items-center justify-between px-6 z-10">
+    <div class="flex items-center space-x-3">
+      <img src="../../public/logo.png" alt="Logo" class="h-8 w-8 object-contain">
+      <div>
+        <span class="font-bold text-lg text-white">ReservePro</span>
+        <span class="text-xs text-gray-400 ml-2 px-2 py-0.5 rounded-full bg-gray-800">Design System</span>
+      </div>
+    </div>
+
+    <!-- Page Selector -->
+    <div class="flex space-x-6 text-sm font-medium">
+      <button onclick="switchPage('login')" id="btn-login" class="page-button py-5 active text-gray-300 hover:text-white transition-colors">
+        <i class="fa-solid fa-right-to-bracket mr-2"></i>Login Page
+      </button>
+      <button onclick="switchPage('dashboard')" id="btn-dashboard" class="page-button py-5 text-gray-400 hover:text-white transition-colors">
+        <i class="fa-solid fa-chart-line mr-2"></i>Dashboard Console
+      </button>
+    </div>
+
+    <!-- Device / Viewport Selector -->
+    <div class="flex items-center space-x-2 bg-gray-900/80 p-1 rounded-lg border border-gray-800">
+      <button onclick="switchDevice('mobile')" id="btn-mobile" class="device-button px-3 py-1.5 rounded-md text-xs font-medium text-gray-400 hover:text-white transition-all flex items-center space-x-1">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        <span>Mobile (375px)</span>
+      </button>
+      <button onclick="switchDevice('tablet')" id="btn-tablet" class="device-button px-3 py-1.5 rounded-md text-xs font-medium text-gray-400 hover:text-white transition-all flex items-center space-x-1">
+        <i class="fa-solid fa-tablet-screen-button"></i>
+        <span>Tablet (768px)</span>
+      </button>
+      <button onclick="switchDevice('laptop')" id="btn-laptop" class="device-button px-3 py-1.5 rounded-md text-xs font-medium text-gray-400 hover:text-white transition-all flex items-center space-x-1">
+        <i class="fa-solid fa-laptop"></i>
+        <span>Laptop (1280px)</span>
+      </button>
+      <button onclick="switchDevice('desktop')" id="btn-desktop" class="device-button active px-3 py-1.5 rounded-md text-xs font-medium text-gray-400 hover:text-white transition-all flex items-center space-x-1">
+        <i class="fa-solid fa-desktop"></i>
+        <span>Desktop (1600px)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Workspace Area -->
+  <main class="flex-1 bg-[#090b11] p-6 flex items-center justify-center overflow-auto relative">
+    <div id="device-wrapper" class="iframe-container bg-[#f7f9fc] rounded-2xl border border-gray-800 overflow-hidden flex flex-col relative" style="width: 1600px; height: 90%; max-height: 850px;">
+      <!-- Device Header Mimic (Only for Mobile and Tablet) -->
+      <div id="device-header" class="h-6 bg-gray-200 flex items-center justify-between px-4 text-[10px] text-gray-600 font-medium hidden">
+        <span id="device-time">9:41 AM</span>
+        <div class="flex items-center space-x-1.5">
+          <i class="fa-solid fa-signal"></i>
+          <i class="fa-solid fa-wifi"></i>
+          <i class="fa-solid fa-battery-full"></i>
+        </div>
+      </div>
+      
+      <!-- Render Screen Content Frame -->
+      <iframe id="preview-iframe" class="w-full flex-1 border-0" src=""></iframe>
+    </div>
+  </main>
+
+  <script>
+    let currentPage = 'login';
+    let currentDevice = 'desktop';
+
+    const devices = {
+      mobile: { width: '375px', height: '667px', showHeader: true },
+      tablet: { width: '768px', height: '1024px', showHeader: true },
+      laptop: { width: '1280px', height: '800px', showHeader: false },
+      desktop: { width: '1600px', height: '90%', showHeader: false }
+    };
+
+    function updateIframeSrc() {
+      const iframe = document.getElementById('preview-iframe');
+      // We will generate separate HTML files for login and dashboard pages, passing viewports as parameters
+      iframe.src = `${currentPage}_mock.html?viewport=${currentDevice}`;
+    }
+
+    function switchPage(page) {
+      currentPage = page;
+      document.querySelectorAll('.page-button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`btn-${page}`).classList.add('active');
+      updateIframeSrc();
+    }
+
+    function switchDevice(device) {
+      currentDevice = device;
+      document.querySelectorAll('.device-button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`btn-${device}`).classList.add('active');
+
+      const wrapper = document.getElementById('device-wrapper');
+      const header = document.getElementById('device-header');
+      const devInfo = devices[device];
+
+      wrapper.style.width = devInfo.width;
+      wrapper.style.height = devInfo.height;
+
+      if (devInfo.showHeader) {
+        header.classList.remove('hidden');
+      } else {
+        header.classList.add('hidden');
+      }
+
+      updateIframeSrc();
+    }
+
+    // Digital Clock for Mobile Device Header
+    setInterval(() => {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      document.getElementById('device-time').textContent = `${hours}:${minutes} ${ampm}`;
+    }, 1000);
+
+    // Initial Setup
+    window.onload = () => {
+      switchDevice('desktop');
+    };
+  </script>
+</body>
+</html>

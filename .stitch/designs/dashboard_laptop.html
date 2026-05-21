@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ReservePro Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#fffbff",
+                        "surface-tint": "#0059c7",
+                        "surface-container": "#eceef1",
+                        "surface": "#f7f9fc",
+                        "on-primary-container": "#fefcff",
+                        "primary-fixed-dim": "#afc6ff",
+                        "secondary-container": "#ffdf1c",
+                        "on-surface": "#191c1e",
+                        "on-primary-fixed-variant": "#004398",
+                        "on-secondary-fixed": "#211b00",
+                        "surface-container-highest": "#e0e3e6",
+                        "inverse-surface": "#2d3133",
+                        "surface-variant": "#e0e3e6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e6e8eb",
+                        "outline-variant": "#c1c6d7",
+                        "on-tertiary-fixed-variant": "#7c2e00",
+                        "on-primary-fixed": "#001a43",
+                        "primary": "#0057c2",
+                        "surface-dim": "#d8dadd",
+                        "tertiary-container": "#c64f00",
+                        "secondary": "#6d5e00",
+                        "primary-fixed": "#d9e2ff",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#727786",
+                        "on-secondary-container": "#716200",
+                        "inverse-on-surface": "#eff1f4",
+                        "on-primary": "#ffffff",
+                        "background": "#f7f9fc",
+                        "surface-container-low": "#f2f4f7",
+                        "inverse-primary": "#afc6ff",
+                        "secondary-fixed-dim": "#e3c600",
+                        "on-surface-variant": "#414755",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#351000",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#9e3d00",
+                        "surface-bright": "#f7f9fc",
+                        "on-background": "#191c1e",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#524700",
+                        "tertiary-fixed": "#ffdbcc",
+                        "secondary-fixed": "#ffe244",
+                        "error": "#ba1a1a",
+                        "primary-container": "#006ef2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin": "24px",
+                        "base": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "18px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .ant-shadow { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .ant-border { border: 1px solid #f0f0f0; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen overflow-hidden flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-surface-container-highest dark:border-outline-variant shadow-sm flex justify-between items-center w-full px-lg h-16 z-50">
+<div class="flex items-center gap-xl">
+<div class="flex items-center gap-sm">
+<img alt="ReservePro Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujhabrb7iQs_zKmqdGnXqNu2KtsSio0Bp9-_t_e9_z3fd_UHw-NMVk0N_T-Rdaa9QVs3FJ1hjfaR7f0ungNj-fUJEFVhweP3a_i_41J0pqpwVymJVeFnwrJlxCBrxGLoc5iG-xc9iu0cDStnSoMP0fRtRl9L5GDL1fwonXUf4zEfHHSq0lskiOApe98F0f_W1jgslejckscTylRFANXOIdcyvrV3lyyoUTRQoC31XbuClkrjJyO-sv2OA"/>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">ReservePro</span>
+</div>
+<nav class="hidden md:flex items-center gap-lg mt-1">
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-2 cursor-pointer active:opacity-70" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-70" href="#">Meeting Rooms</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-70" href="#">My Bookings</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-70" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="flex items-center gap-sm pl-md border-l border-outline-variant">
+<div class="text-right">
+<p class="font-label-md text-label-md leading-none">Alex Thompson</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Administrator</p>
+</div>
+<img alt="User profile avatar" class="h-8 w-8 rounded-full bg-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZl-y02UiuuQTY6lFsOGdWcE_BdfxHiKmrtggGtdGmia0lQYZx95ukvMLBC92p3iGazrVjCOzW7Lb6Oz50uf7rA37WVGGdkFRfA1F_jVZvn-GffLy8RkxpkXZt80VOJyq8Ey6tR7HZEulHRCD39Go-C2xv1amS2OIjdEzd5HIg5xFuMpZ596hhR7HGG3VBtDpKx6AczJPsnPP2Be-3VW4MVtS-axAPE5zNVj0ilJpUGhBrmhgL9gO5knw9I8jfwJTECpmXgYcSj8Y"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-surface-container-low dark:bg-inverse-surface border-r border-surface-container-highest dark:border-outline-variant w-64 flex flex-col h-full py-md shrink-0">
+<div class="px-md mb-md">
+<h2 class="font-label-md text-label-md font-bold text-on-surface dark:text-inverse-on-surface uppercase tracking-wider">Available Rooms</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Select a zone</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto scrollbar-hide px-xs">
+<div class="group flex items-center justify-between p-md bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed border-l-4 border-primary cursor-pointer transition-transform duration-200">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">meeting_room</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold">Room A</span>
+<span class="text-[10px] opacity-80">12 seats</span>
+</div>
+</div>
+<span class="bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-bold">AVAILABLE</span>
+</div>
+<div class="group flex items-center justify-between p-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant cursor-pointer transition-transform duration-200">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">business_center</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Room B</span>
+<span class="text-[10px] opacity-60">8 seats</span>
+</div>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold">IN USE</span>
+</div>
+<div class="group flex items-center justify-between p-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant cursor-pointer transition-transform duration-200">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">palette</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Room C</span>
+<span class="text-[10px] opacity-60">20 seats</span>
+</div>
+</div>
+<span class="bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-bold">AVAILABLE</span>
+</div>
+<div class="group flex items-center justify-between p-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant cursor-pointer transition-transform duration-200">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">self_improvement</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Focus Pods</span>
+<span class="text-[10px] opacity-60">1 seat</span>
+</div>
+</div>
+<span class="bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-bold">2 FREE</span>
+</div>
+</nav>
+<div class="px-md mt-auto pt-md">
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 active:scale-95 transition-transform ant-shadow">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+                    New Booking
+                </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 bg-surface overflow-y-auto p-lg scrollbar-hide">
+<div class="max-w-[1100px] mx-auto space-y-lg">
+<!-- Hero Room Card -->
+<div class="bg-surface-container-lowest ant-border rounded-xl overflow-hidden flex h-48 ant-shadow">
+<div class="w-1/3 h-full relative overflow-hidden group">
+<img alt="Modern Boardroom" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A professional and sleek modern boardroom with a long, polished wood table and ergonomic black chairs. Floor-to-ceiling glass windows reveal a bright, daylight-filled high-rise office interior with clean lines and soft, neutral-toned architecture. The atmosphere is sophisticated and orderly, reflecting a premium corporate environment in a light-mode aesthetic with blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFPmX0qkGew4fl-AFPOGCwENz3_4X6xcUZNz8AnqMKbX8Wv53-bySx2ZLMkZkDq_MJDDITc8A2tE5JOjJKBXsKSbXT8faeRok082K0dUSy5YaHq8e51kwR9DfnopCvQTyGoR4rJl3rb7OOYW9ePGmGkqD-kXpVDRA5reVK1Dwp5l2n3wHN3pzgdSjix2ollZsJuSOVZyvh2EX5VBQPqPb0f3djrNsdRtHPzx1PmX4Q65D_bH-X547nARbwHrRy5PaHOEmF2m0Miiw"/>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface-container-lowest/20"></div>
+</div>
+<div class="flex-1 p-lg flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary mb-1">Boardroom A</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Floor 4 • Wing A</p>
+</div>
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-sm text-label-sm">Premium Room</span>
+</div>
+<div class="grid grid-cols-3 gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">groups</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase font-bold">Capacity</span>
+<span class="font-label-md text-label-md">12 Pax</span>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">schedule</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase font-bold">Min. Booking</span>
+<span class="font-label-md text-label-md">30 Min</span>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">cast</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase font-bold">Resources</span>
+<span class="font-label-md text-label-md">Full AV</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-lg">
+<!-- Today's Schedule -->
+<section class="col-span-8 bg-surface-container-lowest ant-border rounded-xl ant-shadow overflow-hidden">
+<div class="p-md border-b border-surface-container-highest flex justify-between items-center bg-surface-container-low/50">
+<h3 class="font-headline-sm text-headline-sm">Today's Schedule</h3>
+<button class="text-primary font-label-md text-label-md hover:underline">View Full Calendar</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="px-lg py-3 font-medium">Host</th>
+<th class="px-lg py-3 font-medium">Meeting Name</th>
+<th class="px-lg py-3 font-medium">Time Range</th>
+<th class="px-lg py-3 font-medium">Status</th>
+<th class="px-lg py-3 font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-highest">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-3">
+<div class="flex items-center gap-sm">
+<img class="w-8 h-8 rounded-full bg-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_GjRaxq4J0tfIQX7df-hENN0zfIN53YlzePAyBtu4TPabVqMYGQ4176LeTkVGHN1_Uz6l9yNHoyULx_lJf8X7_XVyWAVaKCPi5uLraovEOhSskQJOMg57mbq3k5PYtD_ZpzuhWNIY70A_mUar8J3ncuIATph-QOJ4Jl3ms7KSke0dLQkd4ddjy2wu3WYsS5CHpLlB1KvS71Z-nGPXAxb5KezmMSzHKtK8lNvwrdBIRpZbSZJjVKTKALfMUK4d_oQGK87-KlieMkQ"/>
+<span class="font-body-md text-body-md">Sarah Jenkins</span>
+</div>
+</td>
+<td class="px-lg py-3 font-body-md text-body-md">Q3 Product Review</td>
+<td class="px-lg py-3 font-body-md text-body-md">09:00 - 10:30</td>
+<td class="px-lg py-3">
+<span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase">Active Now</span>
+</td>
+<td class="px-lg py-3 text-right">
+<button class="text-primary hover:bg-primary-container/10 p-1 rounded"><span class="material-symbols-outlined" style="font-size: 18px;">visibility</span></button>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-1 rounded ml-1"><span class="material-symbols-outlined" style="font-size: 18px;">edit</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-3">
+<div class="flex items-center gap-sm">
+<img class="w-8 h-8 rounded-full bg-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmYfC6ySc8uTOOy6OxnqnA6w0stL989QrwFoDJH8FMpTaASHo1hzLOO6yifj-1ke5R8pcbncY89QuLQoVFM5C3JriSCLkpy4li-jpaaOWOG6JXnY2AgnBb_Poxbk5f-_XUzLQxsIilyvFgzWYaq8wsw_okfG6FEQC6LJDLTV_C5nXoYsBks-dmiKvEx_I0dSWViDmnOhAzPgNWYxgKJAHln9cL1tdinJO10vgk3VUCe1OibgAp6_xFr7BPbN45QJa3hyfl3dgx6N4"/>
+<span class="font-body-md text-body-md">Michael Chen</span>
+</div>
+</td>
+<td class="px-lg py-3 font-body-md text-body-md">Project Phoenix Sync</td>
+<td class="px-lg py-3 font-body-md text-body-md">11:00 - 12:00</td>
+<td class="px-lg py-3">
+<span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase">Upcoming</span>
+</td>
+<td class="px-lg py-3 text-right">
+<button class="text-primary hover:bg-primary-container/10 p-1 rounded"><span class="material-symbols-outlined" style="font-size: 18px;">visibility</span></button>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-1 rounded ml-1"><span class="material-symbols-outlined" style="font-size: 18px;">edit</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-3">
+<div class="flex items-center gap-sm">
+<img class="w-8 h-8 rounded-full bg-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5wuKeLpgL8gOtgbxdKtpPORMPPCfMfczmlTU_YT5joMWaNIkiUs2tNaUS2FnlWOszhqBSvxK7rLHYlXXy6DaVu-fuDD3wsI5i3QGETx8S3cojssaYZzMC2R_uXrRRvfBEAKLuiQsOQSh2RXjnHhQwX87SoVjHfO6kDmgP6bCx9G-o-97NWAtlJN_u3A9bpy_NWojDKcQO14p2VuzqH4lRepGmrAVdAYeTaDHuSBK3Mw-pqUK7m1BhmcJfZ7N26sR4pd80Z20fKTk"/>
+<span class="font-body-md text-body-md">Emily Davis</span>
+</div>
+</td>
+<td class="px-lg py-3 font-body-md text-body-md">Investor Presentation</td>
+<td class="px-lg py-3 font-body-md text-body-md">14:30 - 16:00</td>
+<td class="px-lg py-3">
+<span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase">Upcoming</span>
+</td>
+<td class="px-lg py-3 text-right">
+<button class="text-primary hover:bg-primary-container/10 p-1 rounded"><span class="material-symbols-outlined" style="font-size: 18px;">visibility</span></button>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-1 rounded ml-1"><span class="material-symbols-outlined" style="font-size: 18px;">edit</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- New Booking Form -->
+<section class="col-span-4 flex flex-col gap-lg">
+<div class="bg-surface-container-lowest ant-border rounded-xl ant-shadow p-lg flex-1">
+<h3 class="font-headline-sm text-headline-sm mb-lg">New Booking</h3>
+<form class="space-y-md">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase">Guest Name</label>
+<input class="w-full bg-surface border-outline-variant rounded-lg px-3 py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="e.g. Robert Fox" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase">Date</label>
+<div class="relative">
+<input class="w-full bg-surface border-outline-variant rounded-lg px-3 py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" type="date"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase">Start Time</label>
+<input class="w-full bg-surface border-outline-variant rounded-lg px-3 py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" type="time"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase">End Time</label>
+<input class="w-full bg-surface border-outline-variant rounded-lg px-3 py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" type="time"/>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg mt-md hover:bg-primary/90 active:scale-[0.98] transition-all ant-shadow" type="button">
+                                    Confirm Reservation
+                                </button>
+</form>
+</div>
+<!-- Mini Stats/Incentive -->
+<div class="bg-primary text-on-primary rounded-xl p-md ant-shadow relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-[10px] font-bold uppercase opacity-80">Network Status</p>
+<p class="font-headline-sm text-headline-sm">High Availability</p>
+<p class="text-xs mt-1 opacity-90">4 other rooms are free in this wing.</p>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-7xl opacity-10">hub</span>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('click', (e) => {
+                const rect = elem.getBoundingClientRect();
+                const ripple = document.createElement('div');
+                ripple.className = 'absolute bg-white/30 rounded-full w-2 h-2 pointer-events-none transform -translate-x-1/2 -translate-y-1/2 animate-ping';
+                ripple.style.left = (e.clientX - rect.left) + 'px';
+                ripple.style.top = (e.clientY - rect.top) + 'px';
+                elem.classList.add('relative');
+                elem.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Current Date Setter for Demo
+        const dateInput = document.querySelector('input[type="date"]');
+        if (dateInput) {
+            const now = new Date();
+            const today = now.toISOString().split('T')[0];
+            dateInput.value = today;
+        }
+    </script>
+</body></html>

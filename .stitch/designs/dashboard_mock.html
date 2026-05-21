@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReservePro Dashboard</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f7f9fc;
+    }
+    .active-room {
+      background-color: #1677ff !important;
+      color: white !important;
+    }
+    .active-room span {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+    .active-room .badge {
+      background-color: rgba(255, 255, 255, 0.2) !important;
+      color: white !important;
+    }
+    .btn-antd-primary {
+      background-color: #1677ff;
+      transition: all 0.2s;
+    }
+    .btn-antd-primary:hover {
+      background-color: #4096ff;
+    }
+    .input-antd:focus {
+      border-color: #1677ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.1);
+      outline: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header Bar -->
+  <header class="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-4 sm:px-6 sticky top-0 z-20">
+    <div class="flex items-center space-x-3">
+      <!-- Hamburger Menu for Mobile/Tablet -->
+      <button onclick="toggleMobileSidebar()" class="lg:hidden text-gray-500 hover:text-gray-900 focus:outline-none p-1 rounded-lg hover:bg-gray-50">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+      <img src="../../public/logo.png" alt="Logo" class="h-8 w-8 object-contain">
+      <span class="font-bold text-lg text-gray-900 tracking-tight">ReservePro</span>
+      <span class="hidden sm:inline-block text-xs bg-blue-50 text-[#1677ff] px-2.5 py-0.5 rounded-full font-medium border border-blue-100">Workspace Console</span>
+    </div>
+    
+    <div class="flex items-center space-x-4">
+      <div class="hidden md:flex flex-col text-right">
+        <span class="text-xs font-semibold text-gray-900">Admin User</span>
+        <span class="text-[10px] text-gray-400">admin@reserve-pro.test</span>
+      </div>
+      <div class="h-9 w-9 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-sm font-bold text-[#1677ff]">
+        AU
+      </div>
+    </div>
+  </header>
+
+  <!-- Shell Layout wrapper -->
+  <div class="flex-1 flex relative overflow-hidden">
+    
+    <!-- Sidebar for Room Selection -->
+    <!-- On mobile/tablet: floating overlay hidden by default. On desktop: fixed left sidebar -->
+    <aside id="room-sidebar" class="fixed inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 lg:static w-72 bg-white border-r border-gray-100 flex flex-col z-30 transition-transform duration-300 ease-in-out lg:z-0">
+      
+      <!-- Sidebar Header (Only visible on floating mobile menu to allow close) -->
+      <div class="flex items-center justify-between p-4 border-b border-gray-50 lg:hidden">
+        <span class="font-bold text-gray-900">Select Room</span>
+        <button onclick="toggleMobileSidebar()" class="text-gray-400 hover:text-gray-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="p-4 border-b border-gray-50">
+        <h3 class="font-bold text-gray-900 text-sm">Meeting Rooms</h3>
+        <p class="text-xs text-gray-400">Select a room to view schedules</p>
+      </div>
+
+      <!-- Room List Items -->
+      <div class="flex-1 overflow-y-auto p-3 space-y-1">
+        <button onclick="selectRoom('Boardroom Alpha', 12)" class="active-room w-full flex items-center justify-between p-3 rounded-lg text-left text-sm font-medium hover:bg-gray-50 text-gray-700 transition-colors group">
+          <div class="flex items-center space-x-3 overflow-hidden">
+            <i class="fa-solid fa-users-rectangle text-lg opacity-80"></i>
+            <span class="truncate">Boardroom Alpha</span>
+          </div>
+          <span class="badge text-xs bg-blue-50 text-[#1677ff] px-2 py-0.5 rounded font-bold group-hover:bg-blue-100 transition-colors">12p</span>
+        </button>
+
+        <button onclick="selectRoom('Focus Hub', 4)" class="w-full flex items-center justify-between p-3 rounded-lg text-left text-sm font-medium hover:bg-gray-50 text-gray-700 transition-colors group">
+          <div class="flex items-center space-x-3 overflow-hidden">
+            <i class="fa-solid fa-laptop-code text-lg opacity-70 text-gray-400"></i>
+            <span class="truncate">Focus Hub</span>
+          </div>
+          <span class="badge text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded font-bold">4p</span>
+        </button>
+
+        <button onclick="selectRoom('Creative Suite', 8)" class="w-full flex items-center justify-between p-3 rounded-lg text-left text-sm font-medium hover:bg-gray-50 text-gray-700 transition-colors group">
+          <div class="flex items-center space-x-3 overflow-hidden">
+            <i class="fa-solid fa-wand-magic-sparkles text-lg opacity-70 text-gray-400"></i>
+            <span class="truncate">Creative Suite</span>
+          </div>
+          <span class="badge text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded font-bold">8p</span>
+        </button>
+
+        <button onclick="selectRoom('War Room', 10)" class="w-full flex items-center justify-between p-3 rounded-lg text-left text-sm font-medium hover:bg-gray-50 text-gray-700 transition-colors group">
+          <div class="flex items-center space-x-3 overflow-hidden">
+            <i class="fa-solid fa-shield-halved text-lg opacity-70 text-gray-400"></i>
+            <span class="truncate">War Room</span>
+          </div>
+          <span class="badge text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded font-bold">10p</span>
+        </button>
+
+        <button onclick="selectRoom('Huddle Space', 6)" class="w-full flex items-center justify-between p-3 rounded-lg text-left text-sm font-medium hover:bg-gray-50 text-gray-700 transition-colors group">
+          <div class="flex items-center space-x-3 overflow-hidden">
+            <i class="fa-solid fa-comments text-lg opacity-70 text-gray-400"></i>
+            <span class="truncate">Huddle Space</span>
+          </div>
+          <span class="badge text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded font-bold">6p</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Sidebar Backdrop overlay for Mobile -->
+    <div id="sidebar-backdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/30 z-20 hidden lg:hidden"></div>
+
+    <!-- Main Workspace Container -->
+    <main class="flex-1 flex flex-col p-4 sm:p-6 overflow-y-auto space-y-6">
+      
+      <!-- Selected Room Banner -->
+      <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+        <div>
+          <h2 id="selected-room-title" class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">Boardroom Alpha</h2>
+          <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-400 mt-1">
+            <span id="selected-room-capacity"><i class="fa-solid fa-users mr-1"></i>Capacity: 12</span>
+            <span>&bull;</span>
+            <span><i class="fa-solid fa-video mr-1"></i>Video Conferencing</span>
+            <span>&bull;</span>
+            <span><i class="fa-solid fa-chalkboard mr-1"></i>Whiteboard</span>
+            <span>&bull;</span>
+            <span><i class="fa-solid fa-wind mr-1"></i>Air Conditioning</span>
+          </div>
+        </div>
+        <span class="text-xs px-2.5 py-1 bg-green-50 text-green-600 rounded-full font-semibold border border-green-100 self-start sm:self-auto flex items-center">
+          <span class="h-2 w-2 rounded-full bg-green-500 mr-1.5 animate-pulse"></span>Available
+        </span>
+      </div>
+
+      <!-- Main Layout Grid -->
+      <!-- Mobile: Single column. Tablet: 1 column but stacked. Laptop: Side-by-side (14 cols / 10 cols). Desktop: 15 cols / 9 cols -->
+      <div class="grid grid-cols-1 xl:grid-cols-24 gap-6">
+        
+        <!-- Left Side: Current Bookings List/Table -->
+        <div class="xl:col-span-15 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-gray-900 text-base">Current Bookings</h3>
+            <span class="text-xs text-gray-400">Showing schedules for today</span>
+          </div>
+
+          <!-- Table Mockup -->
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500">
+                    <th class="p-4">Host / Guest Name</th>
+                    <th class="p-4">Start Time</th>
+                    <th class="p-4">End Time</th>
+                    <th class="p-4 text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50 text-sm text-gray-700">
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <td class="p-4 font-semibold text-gray-900">Alice Johnson</td>
+                    <td class="p-4 text-gray-500">2026-05-21 10:00</td>
+                    <td class="p-4 text-gray-500">2026-05-21 11:30</td>
+                    <td class="p-4 text-center">
+                      <button onclick="confirmDelete('Alice Johnson')" class="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded transition-all">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <td class="p-4 font-semibold text-gray-900">Bob Smith</td>
+                    <td class="p-4 text-gray-500">2026-05-21 13:00</td>
+                    <td class="p-4 text-gray-500">2026-05-21 14:00</td>
+                    <td class="p-4 text-center">
+                      <button onclick="confirmDelete('Bob Smith')" class="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded transition-all">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <td class="p-4 font-semibold text-gray-900">Carol White</td>
+                    <td class="p-4 text-gray-500">2026-05-21 15:30</td>
+                    <td class="p-4 text-gray-500">2026-05-21 17:00</td>
+                    <td class="p-4 text-center">
+                      <button onclick="confirmDelete('Carol White')" class="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded transition-all">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="p-3 bg-gray-50/50 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400">
+              <span>3 active reservations</span>
+              <div class="flex space-x-1">
+                <button class="px-2 py-1 border border-gray-200 rounded hover:bg-white text-gray-500 disabled:opacity-50" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="px-2 py-1 border border-gray-200 rounded hover:bg-white text-gray-500 disabled:opacity-50" disabled><i class="fa-solid fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Create Reservation Form -->
+        <div class="xl:col-span-9 space-y-4">
+          <h3 class="font-bold text-gray-900 text-base">Create New Booking</h3>
+
+          <div class="bg-white p-5 sm:p-6 rounded-xl border border-gray-100 shadow-sm">
+            <form class="space-y-5" onsubmit="event.preventDefault(); handleNewBooking();">
+              <div>
+                <label for="guest-name" class="block text-sm font-medium text-gray-700 mb-1.5">Guest / Host Name</label>
+                <input type="text" id="guest-name" placeholder="Enter guest name" class="input-antd w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" required>
+              </div>
+              
+              <div>
+                <label for="booking-date" class="block text-sm font-medium text-gray-700 mb-1.5">Reservation Time Slot</label>
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-[10px] text-gray-400 mb-0.5 font-medium uppercase">Start Time</label>
+                    <input type="datetime-local" id="start-time" class="input-antd w-full px-3 py-1.5 border border-gray-300 rounded-md text-xs text-gray-900" required>
+                  </div>
+                  <div>
+                    <label class="block text-[10px] text-gray-400 mb-0.5 font-medium uppercase">End Time</label>
+                    <input type="datetime-local" id="end-time" class="input-antd w-full px-3 py-1.5 border border-gray-300 rounded-md text-xs text-gray-900" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-2 flex justify-end">
+                <button type="submit" class="btn-antd-primary text-white font-semibold text-sm px-5 py-2 rounded-md shadow-sm flex items-center space-x-2">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Confirm Reservation</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('room-sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      sidebar.classList.toggle('-translate-x-full');
+      backdrop.classList.toggle('hidden');
+    }
+
+    function selectRoom(roomName, capacity) {
+      document.getElementById('selected-room-title').textContent = roomName;
+      document.getElementById('selected-room-capacity').innerHTML = `<i class="fa-solid fa-users mr-1"></i>Capacity: ${capacity}`;
+      
+      // Update active styling in sidebar
+      const buttons = document.querySelectorAll('aside button');
+      buttons.forEach(btn => {
+        if (btn.textContent.includes(roomName)) {
+          btn.className = "active-room w-full flex items-center justify-between p-3 rounded-lg text-left text-sm font-medium hover:bg-gray-50 text-gray-700 transition-colors group";
+          const icon = btn.querySelector('i');
+          icon.className = icon.className.replace('text-gray-400', 'text-white').replace('opacity-70', 'opacity-80');
+        } else {
+          btn.className = "w-full flex items-center justify-between p-3 rounded-lg text-left text-sm font-medium hover:bg-gray-50 text-gray-700 transition-colors group";
+          const icon = btn.querySelector('i');
+          icon.className = icon.className.replace('text-white', 'text-gray-400').replace('opacity-80', 'opacity-70');
+        }
+      });
+
+      // If mobile, close sidebar after choice
+      if (window.innerWidth < 1024) {
+        toggleMobileSidebar();
+      }
+    }
+
+    function confirmDelete(guestName) {
+      if (confirm(`Are you sure you want to cancel the reservation for ${guestName}?`)) {
+        alert(`Reservation for ${guestName} canceled.`);
+      }
+    }
+
+    function handleNewBooking() {
+      const name = document.getElementById('guest-name').value;
+      const start = document.getElementById('start-time').value;
+      const end = document.getElementById('end-time').value;
+      alert(`Booking created successfully:\nName: ${name}\nSlot: ${start} to ${end}`);
+      document.getElementById('guest-name').value = '';
+      document.getElementById('start-time').value = '';
+      document.getElementById('end-time').value = '';
+    }
+
+    // Auto set sample times in form fields
+    const today = new Date().toISOString().slice(0, 16);
+    document.getElementById('start-time').value = today;
+    
+    const oneHourLater = new Date(Date.now() + 60 * 60 * 1000).toISOString().slice(0, 16);
+    document.getElementById('end-time').value = oneHourLater;
+  </script>
+</body>
+</html>

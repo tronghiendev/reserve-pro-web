@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>ReservePro Mobile Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffe244",
+                        "on-secondary-fixed": "#211b00",
+                        "primary-container": "#006ef2",
+                        "secondary-fixed-dim": "#e3c600",
+                        "surface-dim": "#d8dadd",
+                        "surface-bright": "#f7f9fc",
+                        "on-primary-fixed": "#001a43",
+                        "inverse-primary": "#afc6ff",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#9e3d00",
+                        "on-primary-container": "#fefcff",
+                        "surface-tint": "#0059c7",
+                        "on-background": "#191c1e",
+                        "on-tertiary-fixed-variant": "#7c2e00",
+                        "surface-variant": "#e0e3e6",
+                        "surface-container-highest": "#e0e3e6",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-high": "#e6e8eb",
+                        "secondary": "#6d5e00",
+                        "surface": "#f7f9fc",
+                        "surface-container-low": "#f2f4f7",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#524700",
+                        "primary-fixed-dim": "#afc6ff",
+                        "on-primary-fixed-variant": "#004398",
+                        "primary-fixed": "#d9e2ff",
+                        "secondary-container": "#ffdf1c",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff1f4",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#c64f00",
+                        "surface-container": "#eceef1",
+                        "outline": "#727786",
+                        "on-secondary-container": "#716200",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c1c6d7",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-tertiary-container": "#fffbff",
+                        "on-tertiary-fixed": "#351000",
+                        "background": "#f7f9fc",
+                        "primary": "#0057c2",
+                        "on-surface-variant": "#414755",
+                        "ant-border": "#f0f0f0",
+                        "ant-border-input": "#d9d9d9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "ant": "6px",
+                        "ant-card": "8px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "margin": "24px",
+                        "base": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }]
+                    },
+                    "boxShadow": {
+                        "ant": "0 2px 8px rgba(0,0,0,0.05)"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex flex-col font-sans antialiased text-on-surface">
+<!-- Top Navigation suppressed for Login screen intent per rules -->
+<main class="flex-grow flex flex-col justify-center items-center px-gutter py-xl w-full max-w-[390px] mx-auto">
+<!-- Brand Header -->
+<div class="w-full flex flex-col items-center mb-xl">
+<div class="mb-lg">
+<img alt="ReservePro Logo" class="w-[64px] h-[64px] object-contain" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAQAElEQVR4AexdB5hVxRX+5+1CpATEyH4riigL28DEioZ8IhZsoGLvvSuY5FOUiCiWqDFoLIBGo8YSy6fGgkaJooKKURQb0hZiR4lRECtkdyf/3LcbN+vuvnbLzLxzvzl3bj1zzn/mf1Pue/elIIsgIAi0i4AQpF1o5IQgAAhBpBYIAh0gIATpABw5JQgIQaQOCAIdIBAhQTooVU4JAo4gIARxJFBiZjIICEGSwV1KdQQBIYgjgRIzk0FACJIM7lKqIwi4SRBHwBUz3UdACOJ+DMWDCBEQgkQIrqh2HwEhiPsxFA8iREAIEiG4otp9BIQgrWIou4JASwSEIC3RkG1BoBUCQpBWgMiuINASASFISzRkWxBohYAQpBUgsisItERACNISjWi3RbuDCAhBHAyamBwfAkKQ+LCWkhxEQAjiYNDE5PgQEILEh7WU5CACQhAHg/ZDk+VIVAgIQaJCVvR6gYAQxIswihNRISAEiQpZ0esFAkIQL8IoTkSFgBAkKmR90VvkfghBirwCiPsdIyAE6RgfOVvkCAhBirwCiPsdIyAE6RgfOVvkCAhBLKgAug4VehF2ohyrF+J8yq16AZ5k/jLz+czfoazg9lfMdSAL8DnzDyiLeXweZTblHu5fRjmZsiv3B1rgXrsmuHBCCBJTlPQy9GSF3S4gwQJcwQo8nftLmTegHkuhMZNyC825kHIMFHZhvg3zQcw3oZRxuxvzdFLoxY2NKJVQ2AIK21MO5v54yg2UGdxfQv31lEWU+1jeRL0YowNCap7lRZI6RkAI0jE+eZ/V89GZlXFnVszfU97CWqxilXwxIIHCOACjuF/BPOoYlLCMKsoBLO8iNOJBGEIuwgradSNlN61RyvOS2kAg6uC0UaS/h/gJ3Y8VbgxlOkqwipXxKQBnUQZTbEu9adCJlCewCJ/R5jspe3FfUgsEhCAtwMhnk6QYyIp1LuUVfkK/Sx3XUUZRulBcST1o6OGUR+jHCvp0hV6KAdwv+iQEyaMKcBxRRbmIFWk+SbGEKn5L2YriQzJjnXH4D+ro32z6aYjjml+h2SsEyQFKVpYd+Qn7KDQWUiaSHGYAnYMGxy41A38N0/VaSN93csz6UMwVgmSAkQPYEpLiUMorJMXTvHwkRVGKKVXT95nE4GG9BP2LyXEhSAfR5qfmGRzAvsdL7qL40oWiK3mnvdGAZcTl8rw1OHZjyjF7Izc3mJ5diLH8tPyIn5rXsMANKZJaIqBxDscnC9iabN7ysI/bQpCmqAbEWIDTOD37Tx66ltKHIqk9BBRq+DxlLj9ILmA31NvnKD8kSHuAeHycXYbjSIx3OOieSjelxSAIWSUFQ4xJ7Ia+xBalX1b3OHZRUROEXYQaBvYlaNzMuEmLQRDyTFvyw8W0Jt6N04qSIHo5urJrMJldhDcZ2CF5Vgq57f8R6M3d59ka783cm1R0BCEx9sMqdgqAM0kO00WALKEhsA5b44dIklNC05iwoqIhiH4H65ActxLvB0iMvswlRYOAIkmuJ0l+EY36eLXGSpB4Xfu+tOB7Rd9iHo8cQ5EUBwIa5mv3cZQUaRneE4Stxv5Yi9fZatRAljgRGEnsK+MsMIqyvCWIrsOPGCDzw6H7SY7vf2gUBYqisy0ETFfrvLZOuHTMS4KY8QZnqJ5gIE6mSEoOgUM5FnF6+tw7guhP0A3fYSbrxHCKpCQRMA8SNc5J0oRCy/aFIAEOATlW4hnuDKVIsgOBE9mir2uHKblb4Q1BOObogZV4FsA2FEn2INAF32KsPebkZokXBNHz0R31MC3H1rm5L1fHgoCCs2NBLwiCEtzPQG9JkWQnAhtyRtHJF0I4TxACfynrxG4USXYj4GQr4jRB9CIcwDrxG0qESVSHhMCe7AqXh6QrNjXOEoTk2Boa98WGlL0FfUYc/kG5gw9EL6aZ5s2MPxQN89B0Fs9/SkkimUnf05IouJAynSSIeY0nK8RDhTju5L0az9FuU/kPRwm2Qyl6qhqsr2rxc8pRqhrnc39Sm1KLU3l8OKUMXbEe9QwnoX4JjYe5HU/SOCGegsIrxUmCYA2uJAT+//JPYxn9nIoU9kUvdCcJhrGCGwLcpSrxkhqI1Tyfc1L9sJJ6ZpFQ11Ln6IAwGqdT0VxKlGkDvRij4dDiHEEI8M5QON4hjHM1dQZMZe2Mfqy8A1iRx6gqPKTK8TUiWgLC1GIayxqCUph3fZmfHkdTWgOc+ka1UwQxvwREA8xvOuDF0uyEhnmH77Hmk5yVdHcSY5qqwPvNp+PM2SotoA1jQIKy3Nso4SaFfYIucrhaI9PmFEHwBS6Hgh8/dtJYwahehk7YmIQYwUr5Z/NJzmNWJENQ2mQ+7YfToOWU8NIamNnH8PRFqMkZgvB5x2bEwdmvLND25jSfG4eRFOWsgOeqAfiA+9Ym2jgLpaiBxuMhGnlIiLoiVeUMQRigCZEiEbVyMwOlMZIVbjPK3VEXF6Z+drtWkyIjqfMmSuFJYWe9FGWFK4pegxMEIZgD2LU6MHo4IixB4Si2Gn+LsIRIVSvz8ydgeUiFKNTj0JB0RarGCYJgLczTcjdsbT9cpi/f/tmQz4Stjl3cSdR5ASWc1AghSBhIclp3Q7Yex4WhK2EdzhIkdHKYQChsq+tg/mPR7Fkr9n8qN+JMa9HLxTANJwkSCTnQtNTD/FFp046dmdUE0ebPJTWOtRO6HK1SMP9fuEmOdyV6eaTkSHu2azqzd201QbAQe0FhXfizONOKxEAOcGZyD9tDazdBgCNtBzBH+5wgSAZy5OhyB5fzw08vweaweLGWIE1fRxhlMXa5m+bAOCQ2cjSj14gRzZs25tYShFO7B7N71clG0PK2yfJxSOzkMEBquwfq9hIE2N/g56FY2c1KhBzp4Fo9ULeSIJy9Mv8iOyyNn3dr6wiSIDmC4HIcsm2wYeHKSoKgDj8jVutQ/EuWjUOSJkcQ4HpsHeSwb20nQeox1D6oQrLIonGIFeQwsCpY+7I/Owmi4MWfr5jYtyOJd7OsIYcBSEsLYmDIRfxtQdIoJEoQq8hh8FCo0e/Ayi61dS2IfhvmjRtOfSXDxDgnSXAcYh050sClsNbOVsQ6gqAE/dOYebxOaBxiKTnSgW6IeBySLiXntX0EATbN2Qs3b4i1m2U1OdLxG5zO7FrbR5BGIUjYVcQBcgDKzp6DfQQB/B5/oGmJaRziBDkMJFoIYmDILArF0cXiOOSTuWX91x+nR/U+R1/c+2z9GOVjbi+nPFp2tr7InMOBuiQzaG1f4Qw5jPkKfbXmCNRsWyT2tSAazr0BPJ94vvdlf4x47LUZqRSmK+A8pbAnpZzbG1BGQmGiOVfWH7PLxuucJy6cIgeCRWGhfa1INgQJrI9tpdA1trISKujOJSdg+MNvYMW3fQZkYcJQfrK+0Xu8zvp3+Q6SIw1DChXpDXvW9hFEw8oHRmGF7LZFp+DMOTfhm/ruWatki9JdadzMbtcpmW5ylhzGsUZpQQwMmeRHmS5w9fy7qysw6ZXJhZg/uWycbvdT1mlypFHZIJ3Zs7avBVF+tiCNOoUxz9/OlqNb/tFX6KYVbsMkKmulxQNyAAo9YdliH0HgJ0HmfToEc/9V+FfMOJD/xXrfYEjLeuQFOdIO9Uhn9qwTJkibQHjZxXr10+3adDafgwza/5R5RA5AQ1qQjBVCYxU8XOasCO+bJRy0BwTxihwm5tLFMihkEIWVGa5w8nSYLYghiHfkSEdVWpA0Dh2uP+/wrJxEt05frk8YLqD4lTR+bJtD7M7aZhK+sM6iEAwa1Ov1ELSkVWxTNqeAqbC0Dllnh4CNBAmni5Wd/7FdNXi98AgSpq7YAMimIIU12VwW5zU2EuSzOAGIq6zBPwmRICHqisv/LMsRgmQESmFpxmscvGC3jaajptdbBVtete7b2K3vIwXrsVSBECSLwCzJ4hrnLuna6WtMG3Y4OqXW5m27uffGHQ5G19Jv8tZh+Y1CkIwBUlic8RpHL6hlCzJxq3Pytt7cW93r7bzvt/5Gje9ss9G6MYiqwiLbQGptTyH7Jw+6Glf8/BS2Al9lraZH51W4bvujYe7N+iYXL1Swrmm0jiBBXDWWBbmnq6Or/ohZozfD0PJnM3pornlu9CAcVHE7imD5yDYf7SSI8rsVMZVg4+7v4sHdd8Sc/apw5dATcWD/O9Cn64cNbC2+OKDiTkweehJe2Lc6uKa863Jzi/+i8S4sW+wkCPCyZThFZk5FjyU4ovJPmDLsKLx2UN+SusN69Zy6/ZE4svImDOjp7XCsbTxT+LDtE8kdtZMgCs8lB4mUnBgCKbyfWNntFGwnQUowBxr17djs8+Hi9q1eCJJVBVADsYYXvkqRVCwI8ANR1eJj29y1swUxKCnpZhkYikgK/5pBBGAJQSIAVVTmgYDCC3ncFfkt9hIEeAYa+X8vI3LopICQEZgTsr5Q1FlLEFWNL6HwZCheihIAloPQWVqQ3COk8EDuN8kdDiKwXFXYN4NlcLS2BTHGoQEPM2+gSPIZAY3nbXXPaoKoQfic45BnbQVP7AoJgRSeCElT6GqsJkjgbQrSzQqA8HbVwEfC99nqnf0EKcH9toIndjUhUEim8Xc1GF8VoiLKe60nCJ+qf0oA7qJI8hMBq3sI1hOkqU5Macol8wuBBnSxuwvtBEFUDV7kYP01v+qGeEMEnlabwupXzTpBEJglhetMJuIVAjfY7o07BKnHX9iKyGtJba9R2dqnUceewV8zXZ70eWcIwpmOtVCQsUjSNSa88i8OT1V0mpwhSABBZ1zFVsTaKcHARlllRkDjPdTAiZlJpwiiKvAFUvhD5gjIFZYjcIVScOIrRE4RJAh6FxJE4+tgW1YuIvChqsU0Vwx3jiCqH1ZC4UpXABY7WyGQwthWR5Lazapc5wgSeCVjkQAGB1czVBUegkOLkwRpGotc5BDOYirwHUpxgmtAOEmQAOQqmG7W/GBbVi4gMEENhHUvhssEnLME4SxII2e0js/koJy3AoF5fCh4lRWW5GiEswQxfrI/a15RKg8PDRi2iuakSin2sdW8THblR5BMWuM83wvjofFJnEVKWVkj0MAZx1Eudq2aPXSeIKqcz0RKcGqzQ5JbhIDGyexaWfk6n2xRcp4gxlF2tczU4a1mW8QaBKbwgeDN1liTpyFeECTwfR2cxtzK11fSruJKGo+z5XDqgWB7AfKGIGpTmHn2fenolxRJySHwGGqwd3LFh1uydQQpxD0OBpdxUHhEITrk3oIQeAzV2EcpePPXFV4RxIRWVeMRaFxjtkViREDjwSZyNMRYauRFeUcQgxgHh79i7vTsCe13Kd1DzPdjy+EVOUwAvCSIcQyl2IP5mxRJ0SGgoXEJW47DoisiWc3eEoTjkdXoiuEAhCQEIYJkfrw2gi3HRLYcOgL9Vqj0liAG3eC3I4YkGgsBmEMi4SDwFjphMz5/mhmOOnu1eE0QA3tAkhIMY1egzuyLFIiAxi0oCqADBQAAA/NJREFUxTZqAD4oUJMTt3tPEBMFftL9G40Yxu3FFEn5IbAcCqPZpTqe3dc1KJKlKAhiYqkG4xP0xJbcduJtGrTTltRIQ6aQHNWcQjf/18Ld4klFQxATUtUH36gaHA4N88u2b80xkQ4RMF/dGULMxpIcRfkNhaIiSHNVULW4mSQZQlnafKyw3Lu7zRv1x5IYP6W86p13OThUlAQx+JAk87EeNidJ7oQsaQQ0zKtdx6E7+pEYU9IHi3tdtAQxYVfl+JpEORIpmFmuZeZYkcpq+n0hGgNiTFZ9Id1PAmJSURPEAGCEs1zPsXLUcnsCpXgqh4Z5PnQGStGXLcYkTmTIa11ZAVomIUgTGqwca1lJLmVlqeShGRQ/k4b5pu39nJXaia1nLX2+jtO2pgXx098CvRKCtAKQleVDVprdWYH2gEby05qt7CtgdxH9Gc/7N6Z/B6pqPMNtSRkQEIK0AxAr0BP8hB2NTtiYl1wKjRXMXUsf0+ArUYItSIoa+vM7ijnGw5KyQUAIkgEl85UKVq4JrFjlJMkhvPxpis3pI9p5PWUE7e5DOUtV4nXIkhcCQpAcYCNJ7mWF2xm90J237U2ZyoqY/He8NBbQlks5G2ce6m1EO0+jPMVjkgpEQAiSB4DKTA/XYDrJMoYVsRKd0Q8aY6jqJuazKVF1x75jGebB3a0s49ckxC5oxE9owyDaMoGzcXN5XlKICAhBQgBTVeB9VtKprKQnMd+BUh60Milsy4p8FIuYxHwa5V5uP0mZx+33KM3TqmYW6WPu11Fep8zmNXczvwQK5vWqw81YiPq7ULamHMcyriYhZqpBMA/3eHnuSe7IjIAQJDNGeV0RtDJVeJkV+Q5W6AuZn045hNu7Urbi9iaUH3NbUXpS+nC/krIFZQfuH8Z8oqrGLdyeZcZCeRkiNxWEgBCkIPjkZt8REIL4HmHxryAEhCAFwSc3+46AEMT3CCfjnzelCkG8CaU4EgUCQpAoUBWd3iAgBPEmlOJIFAgIQaJAVXR6g4AQxJtQFosj8fopBIkXbynNMQSEII4FTMyNFwEhSLx4S2mOISAEcSxgYm68CAhB4sVbSrMZgTZsE4K0AYocEgSaERCCNCMhuSDQBgJCkDZAkUOCQDMCQpBmJCQXBNpAQAjSBihySBBoRiAsgjTrk1wQ8AoBIYhX4RRnwkZACBI2oqLPKwSEIF6FU5wJGwEhSNiIij6vEHCAIF7hLc44hoAQxLGAibnxIiAEiRdvKc0xBIQgjgVMzI0XASFIvHhLaY4hUNwEcSxYYm78CAhB4sdcSnQIASGIQ8ESU+NHQAgSP+ZSokMICEEcCpaYGj8CQpCIMBe1fiDwXwAAAP//H/a9NQAAAAZJREFUAwAtTh3NhIduVgAAAABJRU5ErkJggg=="/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs text-center">
+                Sign in to ReservePro
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant text-center">
+                Mini Booking Management Console
+            </p>
+</div>
+<!-- Login Card -->
+<div class="w-full bg-surface-container-lowest rounded-ant-card border border-ant-border shadow-ant p-lg flex flex-col">
+<form action="#" class="flex flex-col gap-lg" method="POST">
+<!-- Email Field -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface" for="email">
+                        Email
+                    </label>
+<div class="relative">
+<input class="w-full h-[40px] px-sm border border-ant-border-input rounded-ant font-body-md text-body-md text-on-surface placeholder:text-outline transition-all duration-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" id="email" name="email" placeholder="admin@reserve-pro.test" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface" for="password">
+                        Password
+                    </label>
+<div class="relative">
+<input class="w-full h-[40px] px-sm border border-ant-border-input rounded-ant font-body-md text-body-md text-on-surface placeholder:text-outline transition-all duration-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 pr-10" id="password" name="password" placeholder="Enter password" type="password"/>
+<button class="absolute right-sm top-1/2 -translate-y-1/2 text-outline hover:text-on-surface-variant transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility_off">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Controls -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-xs">
+<input class="w-[16px] h-[16px] rounded border-ant-border-input text-primary focus:ring-primary focus:ring-offset-0 transition-all duration-200 cursor-pointer" id="remember" name="remember" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer" for="remember">
+                            Remember me
+                        </label>
+</div>
+<a class="font-body-md text-body-md text-primary hover:text-primary-container transition-colors" href="#">
+                        Forgot password?
+                    </a>
+</div>
+<!-- Submit Button -->
+<button class="w-full h-[40px] bg-primary hover:bg-surface-tint text-on-primary font-label-md text-label-md rounded-ant transition-all duration-200 flex items-center justify-center shadow-sm" type="submit">
+                    Sign In
+                </button>
+</form>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-transparent w-full py-lg flex flex-col md:flex-row justify-center items-center gap-md px-margin w-full max-w-[390px] mx-auto mt-auto">
+<div class="flex flex-wrap justify-center gap-md mb-sm">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Terms of service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Help Center</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant">
+            © 2024 ReservePro Booking Management
+        </div>
+</footer>
+</body></html>
