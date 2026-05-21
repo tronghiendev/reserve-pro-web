@@ -49,12 +49,19 @@ export const BookingFormSection: React.FC = () => {
 
     const { title, date, startTime, endTime } = values;
 
-    const dateStr = date.format('YYYY-MM-DD');
-    const startStr = `${dateStr} ${startTime.format('HH:mm:00')}`;
-    const endStr = `${dateStr} ${endTime.format('HH:mm:00')}`;
+    const startDateTime = dayjs(date)
+      .hour(startTime.hour())
+      .minute(startTime.minute())
+      .second(0)
+      .millisecond(0);
+
+    const endDateTime = dayjs(date)
+      .hour(endTime.hour())
+      .minute(endTime.minute())
+      .second(0)
+      .millisecond(0);
 
     // Simple client-side validation
-    const startDateTime = dayjs(`${date.format('YYYY-MM-DD')} ${startTime.format('HH:mm:00')}`);
     if (startDateTime.isBefore(dayjs().subtract(1, 'minute'))) {
       form.setFields([
         {
@@ -65,7 +72,7 @@ export const BookingFormSection: React.FC = () => {
       return;
     }
 
-    if (endTime.isBefore(startTime) || endTime.isSame(startTime)) {
+    if (endDateTime.isBefore(startDateTime) || endDateTime.isSame(startDateTime)) {
       form.setFields([
         {
           name: 'endTime',
@@ -79,8 +86,8 @@ export const BookingFormSection: React.FC = () => {
       room_id: selectedRoomId,
       user_name: user?.name || 'Unknown Host',
       title: title,
-      start_time: startStr,
-      end_time: endStr,
+      start_time: startDateTime.toISOString(),
+      end_time: endDateTime.toISOString(),
     };
 
     try {
