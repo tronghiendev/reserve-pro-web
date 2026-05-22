@@ -34,7 +34,7 @@ describe('useBookings', () => {
 
   it('fetches bookings when roomId is provided', async () => {
     const mockBookings = [
-      { id: 1, room_id: 10, title: 'Meeting 1', start_time: '2026-05-21 10:00:00', end_time: '2026-05-21 11:00:00', user_name: 'test' }
+      { id: 1, room_id: 10, user_id: 1, title: 'Meeting 1', start_time: '2026-05-21 10:00:00', end_time: '2026-05-21 11:00:00', user_name: 'test' }
     ];
     vi.mocked(fetchBookingsByRoomApi).mockResolvedValue(mockBookings);
 

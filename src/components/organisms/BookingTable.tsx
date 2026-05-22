@@ -94,7 +94,7 @@ export const BookingTable: React.FC = () => {
       width: 80,
       align: 'center' as const,
       render: (_: unknown, record: Booking) => {
-        const isOwner = user && record.user_name === user.name;
+        const isOwner = user && record.user_id === user.id;
         return isOwner ? (
           <DeleteBookingAction bookingId={record.id} guestName={record.user_name} />
         ) : null;

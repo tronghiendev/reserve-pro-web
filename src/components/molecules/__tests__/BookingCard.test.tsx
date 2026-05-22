@@ -17,6 +17,7 @@ describe('BookingCard', () => {
   const mockBooking = {
     id: 42,
     room_id: 10,
+    user_id: 1,
     user_name: 'john_doe',
     start_time: '2026-05-21 10:00:00',
     end_time: '2026-05-21 11:00:00',

@@ -24,7 +24,7 @@ describe('booking.service', () => {
       start_time: '2026-05-21 14:00:00',
       end_time: '2026-05-21 15:00:00',
     };
-    const mockBooking = { id: 101, ...payload };
+    const mockBooking = { id: 101, user_id: 1, ...payload };
     const mockResponse = { data: { data: mockBooking } };
     
     vi.mocked(apiClient.post).mockResolvedValueOnce(mockResponse);

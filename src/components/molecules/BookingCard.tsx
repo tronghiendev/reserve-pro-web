@@ -51,7 +51,7 @@ export const BookingCard: React.FC<BookingCardProps> = ({ booking }) => {
           </Space>
         </div>
 
-        {user && booking.user_name === user.name && (
+        {user && booking.user_id === user.id && (
           <div style={{ alignSelf: 'center' }}>
             <DeleteBookingAction bookingId={booking.id} guestName={booking.user_name} />
           </div>
