@@ -1,0 +1,64 @@
+{
+  "name": "projects/2913699036378237577",
+  "projectId": "2913699036378237577",
+  "title": "ReservePro",
+  "visibility": "PRIVATE",
+  "projectType": "PROJECT_DESIGN",
+  "origin": "STITCH",
+  "designTheme": {
+    "colorMode": "LIGHT",
+    "font": "INTER",
+    "roundness": "ROUND_SIX",
+    "customColor": "#1677ff"
+  },
+  "screens": {
+    "login_mobile": {
+      "id": "b6b5378c7c3643a5a1c8f57b9d4b3653",
+      "width": 375,
+      "height": 812,
+      "file": "login_mobile.html"
+    },
+    "login_tablet": {
+      "id": "979f317792404170aabce1a4efe495df",
+      "width": 768,
+      "height": 1024,
+      "file": "login_tablet.html"
+    },
+    "login_laptop": {
+      "id": "300e2895a61a4ac0913932efb4e95eff",
+      "width": 1366,
+      "height": 768,
+      "file": "login_laptop.html"
+    },
+    "login_desktop": {
+      "id": "1979f3c3319a4ca9987a8f62ce5d8b28",
+      "width": 1600,
+      "height": 1000,
+      "file": "login_desktop.html"
+    },
+    "dashboard_mobile": {
+      "id": "691d3d162fec46e28087186ee6de3dc2",
+      "width": 375,
+      "height": 812,
+      "file": "dashboard_mobile.html"
+    },
+    "dashboard_tablet": {
+      "id": "ae20661347054e0ea66360a66fbb5aed",
+      "width": 768,
+      "height": 1024,
+      "file": "dashboard_tablet.html"
+    },
+    "dashboard_laptop": {
+      "id": "3bcf525624b547909c173147851f0f2b",
+      "width": 1366,
+      "height": 768,
+      "file": "dashboard_laptop.html"
+    },
+    "dashboard_desktop": {
+      "id": "16ef629641ff420c9083c79e4cd2adf5",
+      "width": 1600,
+      "height": 1200,
+      "file": "dashboard_desktop.html"
+    }
+  }
+}

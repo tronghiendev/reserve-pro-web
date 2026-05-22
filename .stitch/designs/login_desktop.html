@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In | ReservePro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "secondary-fixed": "#ffe244",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "primary": "#0057c2",
+                    "on-tertiary-container": "#fffbff",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#191c1e",
+                    "tertiary-fixed": "#ffdbcc",
+                    "outline": "#727786",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#eff1f4",
+                    "background": "#f7f9fc",
+                    "secondary": "#6d5e00",
+                    "primary-container": "#006ef2",
+                    "surface-variant": "#e0e3e6",
+                    "on-secondary-fixed-variant": "#524700",
+                    "on-primary-container": "#fefcff",
+                    "secondary-fixed-dim": "#e3c600",
+                    "primary-fixed": "#d9e2ff",
+                    "on-primary-fixed": "#001a43",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#351000",
+                    "tertiary-container": "#c64f00",
+                    "surface-container": "#eceef1",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e0e3e6",
+                    "surface-dim": "#d8dadd",
+                    "primary-fixed-dim": "#afc6ff",
+                    "on-primary-fixed-variant": "#004398",
+                    "on-surface-variant": "#414755",
+                    "error": "#ba1a1a",
+                    "tertiary": "#9e3d00",
+                    "surface-container-low": "#f2f4f7",
+                    "on-secondary-fixed": "#211b00",
+                    "inverse-primary": "#afc6ff",
+                    "surface-bright": "#f7f9fc",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c1c6d7",
+                    "on-surface": "#191c1e",
+                    "surface-container-high": "#e6e8eb",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "error-container": "#ffdad6",
+                    "surface": "#f7f9fc",
+                    "secondary-container": "#ffdf1c",
+                    "surface-tint": "#0059c7",
+                    "on-secondary-container": "#716200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "xl": "32px",
+                    "margin": "24px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .ant-shadow { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .form-input-focus:focus {
+            outline: none;
+            border-color: #0057c2;
+            box-shadow: 0 0 0 2px rgba(0, 87, 194, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-surface min-h-screen flex items-center justify-center p-md">
+<!-- Login Container -->
+<main class="w-full max-w-[1000px] flex flex-col md:flex-row bg-surface-container-lowest rounded-xl overflow-hidden ant-shadow border border-surface-variant min-h-[600px]">
+<!-- Left Side: Branding/Identity -->
+<section class="w-full md:w-1/2 bg-gradient-to-br from-primary to-[#003d8a] p-xl flex flex-col justify-between relative overflow-hidden text-on-primary">
+<!-- Decorative Background Element -->
+<div class="absolute -bottom-20 -left-20 w-64 h-64 bg-primary-container opacity-20 rounded-full blur-3xl"></div>
+<div class="absolute -top-10 -right-10 w-48 h-48 bg-secondary-container opacity-10 rounded-full blur-2xl"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-sm mb-xl">
+<img alt="ReservePro Logo" class="w-10 h-10 object-contain brightness-0 invert" src="https://lh3.googleusercontent.com/aida/ADBb0ujhabrb7iQs_zKmqdGnXqNu2KtsSio0Bp9-_t_e9_z3fd_UHw-NMVk0N_T-Rdaa9QVs3FJ1hjfaR7f0ungNj-fUJEFVhweP3a_i_41J0pqpwVymJVeFnwrJlxCBrxGLoc5iG-xc9iu0cDStnSoMP0fRtRl9L5GDL1fwonXUf4zEfHHSq0lskiOApe98F0f_W1jgslejckscTylRFANXOIdcyvrV3lyyoUTRQoC31XbuClkrjJyO-sv2OA"/>
+<span class="font-headline-sm text-headline-sm font-bold tracking-tight">ReservePro</span>
+</div>
+<div class="space-y-lg mt-xl">
+<h1 class="font-headline-lg text-headline-lg leading-tight">Master your workspace <br/>with precision.</h1>
+<ul class="space-y-md">
+<li class="flex items-start gap-md">
+<span class="material-symbols-outlined mt-1 opacity-80" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="font-label-md text-label-md font-semibold">Effortless Booking</p>
+<p class="font-body-md text-body-md opacity-80">Streamlined workflows for room and desk reservations.</p>
+</div>
+</li>
+<li class="flex items-start gap-md">
+<span class="material-symbols-outlined mt-1 opacity-80" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<div>
+<p class="font-label-md text-label-md font-semibold">Real-time Availability</p>
+<p class="font-body-md text-body-md opacity-80">Instant sync across all devices and office displays.</p>
+</div>
+</li>
+<li class="flex items-start gap-md">
+<span class="material-symbols-outlined mt-1 opacity-80" style="font-variation-settings: 'FILL' 1;">insights</span>
+<div>
+<p class="font-label-md text-label-md font-semibold">Smart Analytics</p>
+<p class="font-body-md text-body-md opacity-80">Data-driven insights into office utilization rates.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="relative z-10 pt-xl">
+<p class="font-label-sm text-label-sm opacity-70 mb-sm">Trusted by teams worldwide</p>
+<div class="flex items-center -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-primary" data-alt="Close up portrait of a smiling professional woman in a modern office environment, soft natural lighting, high-quality corporate photography, shallow depth of field, blue and white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAakG0SY4BCRaI2kihUh_eveFAWOAeWvGC8cwjlbiSwS4Gg_uCMLDvdhf9_Vxo82-4pTHeNUqsPKSg-uuYmidsPqBH6f3iciX6kVsIIm3MVgh22t8EFJLyiLFjy99207a8FKlbH_t-DpxQgw8mw_i58a1t9j7PtZZ4bUESTd0uZ1Sz_fo2YPn-3YkkJ4XvN0d8fiTcYrTfuIHK-JenjR7E_0X11c01_GDZjjvk3FF2i8JNsXZx2wKRuY38wi4zMRh71jqJipo0-lkE"/>
+<img class="w-8 h-8 rounded-full border-2 border-primary" data-alt="Close up portrait of a confident businessman in a clean white shirt, professional studio lighting, minimalist background, corporate style, high resolution, soft cool tones to match the blue branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzxoPiF-vyfKEwiE4vOz3Ry77V-o5LBHC-gClQFvXcttvTIfUgTJKflceIQhr4gYPPWBQEdpTxlxRtWJMTKo-eaPWMbZUxUyO2SQRICNoxnZS1Y8unT610mzRshpTWMPZ7SyGswegI7FtCyAevXW24B0RZNR76ecicWXVx315hcy4UASN5ZL6NfPfwCq33sFdkMg7eSgxFS1NlMWxajuUX2BZAKwBGgiiAnTR5F8qwBsRu4U_3gPQqWaeZmWmas6NidgnR2tg6hdI"/>
+<img class="w-8 h-8 rounded-full border-2 border-primary" data-alt="Portrait of a creative designer wearing glasses and a navy sweater, warm indoor office lighting, professional aesthetic, vibrant but professional colors, clean minimalist composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXu7LBYDpVABZ9pvG_UHg2sS-s8fFyud2ewYom5XQ39Ol50m_ZBx5II2_mi9H8HsbHuVZaFeALu1eEsaKEp3TXEdwFk-wpGuj0zet1xb3pul0ho_FPEQDNeb6ZeRfFaT5VynJxCfUW1XYJbcKZoCqxTZ9RiPKbwpe06aTj8FJZw3IA67VBdGUxuu52xo0QyIz4t8PS2H3_Z2slSpk_QBLGZMJ7DYzLHWw2GonhnA3tf3Dh7j93vpNfHqSl6RI0q2TJSHaCX3Rlitk"/>
+<img class="w-8 h-8 rounded-full border-2 border-primary" data-alt="Headshot of a corporate executive in a light blue suit, modern architecture blurred in the background, professional corporate lighting, crisp details, elegant and trustworthy mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJVWuoBuo1MkszDl2H_P_IajIiCtoAvPAaFVKnVUrr3Hiz6gM_PfaWwvHPcXtmfs7c1RRD_hBMNeo0PR9Rd19jXVnT5Sn1PXAazk1ni8yEa5z-sNsVmJAwsdAr3vSlzazwoHezOe6yu0-l-NvQcNCiYEk6slxRfi8QzVTuTaj9sEsOWeN_j2BjQlne-VS6Fy66Jgb9YhCf5MRimRULOBYYe00UO6QtnWh5taeMIczWx_2D9fFk5-Wv29GsYhDqF2W88D29sEJO2QU"/>
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary-container text-[10px] font-bold border-2 border-primary">+500</div>
+</div>
+</div>
+</section>
+<!-- Right Side: Form -->
+<section class="w-full md:w-1/2 p-xl flex flex-col justify-center bg-surface-container-lowest">
+<div class="max-w-sm mx-auto w-full">
+<div class="mb-xl">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Sign In</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Welcome back! Please enter your details.</p>
+</div>
+<form action="#" class="space-y-lg" onsubmit="return false;">
+<!-- Email Field -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface font-medium" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">mail</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface form-input-focus transition-all duration-200" id="email" placeholder="admin@reserve-pro.test" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface font-medium" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
+<input class="w-full pl-10 pr-10 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface form-input-focus transition-all duration-200" id="password" type="password" value="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors duration-200" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember & Forgot -->
+<div class="flex items-center justify-between">
+<label class="flex items-center cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20 transition-all duration-200" type="checkbox"/>
+<span class="ml-2 font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface">Remember me</span>
+</label>
+<a class="font-label-sm text-label-sm text-primary hover:underline transition-all" href="#">Forgot password?</a>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-2.5 bg-primary text-on-primary font-label-md text-label-md font-semibold rounded-lg hover:bg-primary-container active:scale-[0.98] transition-all duration-200 ant-shadow" type="submit">
+                        Sign In
+                    </button>
+</form>
+<!-- Helper Text -->
+<div class="mt-xl p-md bg-surface-container-low rounded-lg border border-surface-variant flex items-start gap-md">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">info</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-semibold mb-0.5">Demo Credentials</p>
+<code class="font-label-sm text-label-sm text-primary bg-primary-container/10 px-1 rounded">admin@reserve-pro.test / password</code>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="mt-xl flex justify-center gap-lg">
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Background Subtle Accents -->
+<div class="fixed inset-0 -z-10 pointer-events-none">
+<div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary opacity-[0.03] rounded-full blur-[100px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary opacity-[0.03] rounded-full blur-[100px]"></div>
+</div>
+<script>
+        // Simple Interaction logic for demo
+        document.querySelector('button[type="submit"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            this.innerHTML = '<span class="flex items-center justify-center gap-2"><svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Authenticating...</span>';
+            setTimeout(() => {
+                this.innerHTML = 'Sign In';
+            }, 2000);
+        });
+
+        // Toggle Password visibility logic
+        const togglePass = document.querySelector('button[type="button"]');
+        const passInput = document.getElementById('password');
+        togglePass.addEventListener('click', () => {
+            const isPass = passInput.type === 'password';
+            passInput.type = isPass ? 'text' : 'password';
+            togglePass.querySelector('span').innerText = isPass ? 'visibility_off' : 'visibility';
+        });
+    </script>
+</body></html>

@@ -1,0 +1,60 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.innerLayout {
+  flex: 1;
+  position: relative;
+}
+
+.leftSider {
+  border-right: 1px solid #c1c6d7;
+  height: calc(100vh - 64px);
+  position: sticky;
+  top: 64px;
+  left: 0;
+  overflow-y: auto;
+}
+
+.rightSider {
+  border-left: 1px solid #c1c6d7;
+  height: calc(100vh - 64px);
+  position: sticky;
+  top: 64px;
+  right: 0;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+.content {
+  background-color: #f7f9fc;
+  overflow-y: auto;
+  height: calc(100vh - 64px);
+}
+
+.contentWrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 28px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.mobileRightPanel {
+  margin-top: 24px;
+}

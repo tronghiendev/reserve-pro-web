@@ -1,0 +1,33 @@
+.rowBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.alertBox {
+  margin-top: 24px;
+  border-radius: 8px;
+}
+
+.footer {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.footerLink {
+  color: #5e5e5e !important;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.footerLink:hover {
+  color: #0057c2 !important;
+}
+
+.divider {
+  color: #c1c6d7;
+  font-size: 13px;
+}

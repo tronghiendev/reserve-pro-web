@@ -1,0 +1,97 @@
+.banner {
+  position: relative;
+  width: 100%;
+  height: 288px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #0057c2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.coverImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gradientFallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0057c2 0%, #003d8a 100%);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  color: #ffffff;
+}
+
+.badgeRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tagFeatured {
+  background-color: #fa8c16 !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.tagCapacity {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+.roomName {
+  margin: 0 !important;
+  color: #ffffff !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px !important;
+  line-height: 1.2 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.amenitiesRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.amenityTag {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-size: 12px !important;
+  padding: 2px 10px !important;
+  border-radius: 4px !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

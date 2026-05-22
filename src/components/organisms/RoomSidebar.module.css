@@ -1,0 +1,85 @@
+.container {
+  padding: 24px 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.title {
+  margin: 0 !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  letter-spacing: -0.3px !important;
+  color: #191c1e !important;
+}
+
+.filterBtn {
+  color: #5e5e5e !important;
+}
+
+.navSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #5e5e5e;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navItem:hover {
+  background-color: #f2f4f7;
+  color: #0057c2;
+}
+
+.navItemActive {
+  background-color: #e6f0ff;
+  color: #0057c2;
+  font-weight: 600;
+}
+
+.navIcon {
+  font-size: 16px;
+}
+
+.divider {
+  margin: 16px 0 !important;
+  border-color: #eceef1 !important;
+}
+
+.listScroll {
+  flex: 1;
+  overflow-y: auto;
+  margin-right: -8px;
+  padding-right: 8px;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footerSection {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

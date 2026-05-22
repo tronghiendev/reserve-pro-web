@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ReservePro Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb695",
+                    "surface-tint": "#0059c7",
+                    "primary-fixed-dim": "#afc6ff",
+                    "secondary-fixed": "#ffe244",
+                    "secondary": "#6d5e00",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#191c1e",
+                    "tertiary": "#9e3d00",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d8dadd",
+                    "surface": "#f7f9fc",
+                    "surface-variant": "#e0e3e6",
+                    "on-tertiary-fixed": "#351000",
+                    "surface-bright": "#f7f9fc",
+                    "secondary-container": "#ffdf1c",
+                    "outline": "#727786",
+                    "on-background": "#191c1e",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#0057c2",
+                    "primary-fixed": "#d9e2ff",
+                    "surface-container-high": "#e6e8eb",
+                    "on-secondary-fixed": "#211b00",
+                    "on-primary-fixed-variant": "#004398",
+                    "primary-container": "#006ef2",
+                    "surface-container-highest": "#e0e3e6",
+                    "on-secondary-fixed-variant": "#524700",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#fefcff",
+                    "inverse-surface": "#2d3133",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#716200",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#e3c600",
+                    "on-surface-variant": "#414755",
+                    "inverse-on-surface": "#eff1f4",
+                    "inverse-primary": "#afc6ff",
+                    "background": "#f7f9fc",
+                    "surface-container-low": "#f2f4f7",
+                    "on-error": "#ffffff",
+                    "surface-container": "#eceef1",
+                    "on-primary-fixed": "#001a43",
+                    "outline-variant": "#c1c6d7",
+                    "on-tertiary-container": "#fffbff",
+                    "tertiary-container": "#c64f00",
+                    "tertiary-fixed": "#ffdbcc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "sm": "8px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "margin": "24px",
+                    "md": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .card-shadow { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-gutter h-16 shadow-sm">
+<button class="p-2 hover:bg-surface-container-low transition-colors rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</button>
+<h1 class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">ReservePro</h1>
+<div class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden active:scale-95 duration-100">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young male executive with a warm, confident expression. The lighting is soft and natural, typical of a bright modern office setting. The background is slightly blurred with hints of glass and corporate furniture in soft blue and slate tones, maintaining a high-end SaaS professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTu3r4Aq-bz2O1W73AaJ4urzgdxpJRqHqkV7YfXWXm2ncZylWbnU5ZtmuwpC78Q3mVT5pbCuNEBMLDUFVe-4Opq2s1LdZAkwiJ1rw4v9fjbJBAPu0HGy9jH_5uwJyHcWin-ZPFuEpsaFmt2Hsg3Cy4bR28WoBTexaRIyw8pq4o9NKAilWc79bLJitwpXof7iFNPHlvjPb4dDNUks-gKPfEKAPbIKBvW91dK9Qx7tloq0NGTMyMcLRkEf-4ri6EBhtvyG617P2_hM8"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-gutter space-y-lg">
+<!-- Welcome Message -->
+<section class="mt-4">
+<p class="text-label-md font-label-md text-on-surface-variant">Welcome back,</p>
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface">Hello, Alex Rivers</h2>
+</section>
+<!-- Room Selector (Horizontal Scroll) -->
+<section>
+<div class="flex justify-between items-center mb-md">
+<h3 class="text-headline-sm font-headline-sm">Available Rooms</h3>
+<button class="text-primary text-label-md font-label-md">View All</button>
+</div>
+<div class="flex space-x-md overflow-x-auto no-scrollbar -mx-gutter px-gutter pb-4">
+<!-- Room Card 1 -->
+<div class="min-w-[200px] bg-surface-container-lowest border border-outline-variant rounded-lg p-md card-shadow flex-shrink-0 transition-transform active:scale-95">
+<div class="w-full h-24 rounded-lg bg-surface-container-low mb-sm overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-tech executive boardroom with a long polished wooden table and twelve ergonomic chairs. Large windows reveal a city skyline in soft daylight. The interior is characterized by a minimalist corporate design with professional blue accents and bright, airy lighting conditions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSfncgi0HKE6O6z0cCGkyKIbH7IZC37SXX-bhDac__KzNhHEM3p1p4RwREbRGTfXvyeYsdzmgEfXGiHznn7hQ1iti9eKLxN6D20zsA8VmXjTUExDbCNYXjJoD5-_ME5MXJq6xHWE2PxNt76cY32m3n1BhzLWpaBN_cAQsAjDv4j0AfqSCp26reTW7fJd9ejPcQfuPS0p5BU67V1Qw4fG9i6STtk8avNDr9X7171PTvnA-bvHCxI17BAxE9p6AaTIJPU0A587LC5aQ"/>
+</div>
+<h4 class="text-body-lg font-bold text-on-surface">Boardroom A</h4>
+<div class="flex items-center text-on-surface-variant mb-base">
+<span class="material-symbols-outlined text-sm mr-1" data-icon="group">group</span>
+<span class="text-label-sm">12 seats</span>
+</div>
+<div class="inline-flex items-center px-2 py-0.5 rounded-sm bg-green-100 text-green-700 text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>
+                        Available
+                    </div>
+</div>
+<!-- Room Card 2 -->
+<div class="min-w-[200px] bg-surface-container-lowest border border-outline-variant rounded-lg p-md card-shadow flex-shrink-0 transition-transform active:scale-95">
+<div class="w-full h-24 rounded-lg bg-surface-container-low mb-sm overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A medium-sized modern conference room with glass walls and professional decor. A sleek white table is surrounded by minimalist chairs. The space is illuminated by soft overhead LED panels, creating a calm and orderly atmosphere in a corporate environment with neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiORZiylIN02Hx2umgMbBGKbro-6DbP12p8D6CSJ714_BZ9LunYsQGMC-EGU7m-feLN7z1lTJxfvHZrGOGxkOpAQ2PQP5qhVbPDXi8Ty1oecw1Gr_7frd2F5NqtZzSGv2890COPtFZoGNayd4S8BRNu-_iC3ureQJgrs1LTeqepjDQboAZ5gu1UMorhls7aKuDyaKsaxlqU-w6ejuslSozSY6Fhj7xuWWC26jSNebHj3dk5ndYsZ6eTS6RaMI8kC_cVNdd-kCGWSY"/>
+</div>
+<h4 class="text-body-lg font-bold text-on-surface">Studio 4</h4>
+<div class="flex items-center text-on-surface-variant mb-base">
+<span class="material-symbols-outlined text-sm mr-1" data-icon="group">group</span>
+<span class="text-label-sm">6 seats</span>
+</div>
+<div class="inline-flex items-center px-2 py-0.5 rounded-sm bg-orange-100 text-orange-700 text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-1.5"></span>
+                        In Use
+                    </div>
+</div>
+<!-- Room Card 3 -->
+<div class="min-w-[200px] bg-surface-container-lowest border border-outline-variant rounded-lg p-md card-shadow flex-shrink-0 transition-transform active:scale-95">
+<div class="w-full h-24 rounded-lg bg-surface-container-low mb-sm overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small, private meeting pod with two comfortable chairs and a small table, designed for quiet focus or one-on-one sessions. The design is modern and clean with soft textures and a calm color palette of light blues and off-whites. Bright, diffused light makes the space inviting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4YCX0O8ANyA2s-Gn4tumsNj5uyF0ikTjmC7bLWepAnCONHwWYF__lVsJpTe2CBvy37jLd6Ok0a73g_51RMLJy3ysFbuizpCPdhB9R6GkGU9ukhVikHxNg1zjnChKvnhCamzrtn7DPkHoryEFv909yrTp_XFlnW9JK6FilgZAQX4ICge6BmxM1yNCPh6oY6Q412zC88Y7yffzN4XgiEeis38wsoRdtoHG8SfgAoqolzhRubvvF148Q1aztneWhTSwgxyt7-1cWA4Y"/>
+</div>
+<h4 class="text-body-lg font-bold text-on-surface">Focus Pod 2</h4>
+<div class="flex items-center text-on-surface-variant mb-base">
+<span class="material-symbols-outlined text-sm mr-1" data-icon="group">group</span>
+<span class="text-label-sm">2 seats</span>
+</div>
+<div class="inline-flex items-center px-2 py-0.5 rounded-sm bg-green-100 text-green-700 text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>
+                        Available
+                    </div>
+</div>
+</div>
+</section>
+<!-- Active Reservations (Vertical List) -->
+<section class="space-y-md">
+<h3 class="text-headline-sm font-headline-sm">Active Reservations</h3>
+<div class="space-y-sm">
+<!-- List Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md card-shadow flex items-center justify-between transition-colors hover:bg-surface-container-low">
+<div class="flex items-center space-x-md">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="meeting_room">meeting_room</span>
+</div>
+<div>
+<h5 class="text-body-lg font-bold text-on-surface">Boardroom A</h5>
+<p class="text-label-sm text-on-surface-variant">With: Sarah Jenkins</p>
+<p class="text-label-sm font-medium text-primary flex items-center mt-0.5">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="schedule">schedule</span>
+                                10:00 AM - 11:30 AM
+                            </p>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-primary-container text-on-primary-fixed-variant text-label-sm font-bold">Ongoing</span>
+</div>
+<!-- List Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md card-shadow flex items-center justify-between transition-colors hover:bg-surface-container-low">
+<div class="flex items-center space-x-md">
+<div class="w-12 h-12 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+</div>
+<div>
+<h5 class="text-body-lg font-bold text-on-surface">Creative Lab</h5>
+<p class="text-label-sm text-on-surface-variant">With: Design Team</p>
+<p class="text-label-sm font-medium text-on-surface-variant flex items-center mt-0.5">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="calendar_today">calendar_today</span>
+                                02:00 PM - 03:30 PM
+                            </p>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-surface-container-high text-on-surface-variant text-label-sm font-bold">Upcoming</span>
+</div>
+<!-- List Item 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md card-shadow flex items-center justify-between transition-colors hover:bg-surface-container-low">
+<div class="flex items-center space-x-md">
+<div class="w-12 h-12 rounded-lg bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="videocam">videocam</span>
+</div>
+<div>
+<h5 class="text-body-lg font-bold text-on-surface">Media Suite</h5>
+<p class="text-label-sm text-on-surface-variant">With: Alex Rivers</p>
+<p class="text-label-sm font-medium text-on-surface-variant flex items-center mt-0.5">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="event">event</span>
+                                04:00 PM - 05:00 PM
+                            </p>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-surface-container-high text-on-surface-variant text-label-sm font-bold">Upcoming</span>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB: Create Reservation -->
+<button class="fixed bottom-24 right-gutter bg-[#1677ff] hover:bg-primary-container text-white h-14 px-6 rounded-full shadow-lg flex items-center space-x-2 transition-all active:scale-90 z-50">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="font-bold text-label-md">Create Reservation</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t border-outline-variant shadow-sm h-16">
+<a class="flex flex-col items-center justify-center text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span class="text-label-sm font-label-sm">Schedule</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="text-label-sm font-label-sm">New</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm">Account</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for the cards
+        document.querySelectorAll('.card-shadow').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

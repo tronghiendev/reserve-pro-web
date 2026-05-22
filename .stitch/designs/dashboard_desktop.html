@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ReservePro Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+            color: #191c1e;
+        }
+        .ant-shadow {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Scrollbar for high-density sidebars */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7f9fc;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d9d9d9;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c1c6d7;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#7c2e00",
+                      "surface-dim": "#d8dadd",
+                      "on-secondary-fixed": "#211b00",
+                      "surface": "#f7f9fc",
+                      "background": "#f7f9fc",
+                      "on-primary": "#ffffff",
+                      "surface-container-highest": "#e0e3e6",
+                      "on-primary-fixed": "#001a43",
+                      "inverse-on-surface": "#eff1f4",
+                      "on-error": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed": "#351000",
+                      "primary-fixed": "#d9e2ff",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "secondary": "#6d5e00",
+                      "on-background": "#191c1e",
+                      "secondary-fixed": "#ffe244",
+                      "tertiary": "#9e3d00",
+                      "primary": "#0057c2",
+                      "outline-variant": "#c1c6d7",
+                      "inverse-primary": "#afc6ff",
+                      "surface-bright": "#f7f9fc",
+                      "primary-fixed-dim": "#afc6ff",
+                      "on-surface-variant": "#414755",
+                      "inverse-surface": "#2d3133",
+                      "outline": "#727786",
+                      "tertiary-fixed-dim": "#ffb695",
+                      "on-secondary-fixed-variant": "#524700",
+                      "tertiary-fixed": "#ffdbcc",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container": "#eceef1",
+                      "on-secondary-container": "#716200",
+                      "on-primary-fixed-variant": "#004398",
+                      "on-tertiary-container": "#fffbff",
+                      "on-surface": "#191c1e",
+                      "secondary-container": "#ffdf1c",
+                      "on-primary-container": "#fefcff",
+                      "surface-tint": "#0059c7",
+                      "secondary-fixed-dim": "#e3c600",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#c64f00",
+                      "surface-variant": "#e0e3e6",
+                      "surface-container-low": "#f2f4f7",
+                      "primary-container": "#006ef2",
+                      "surface-container-high": "#e6e8eb"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin": "24px",
+                      "xs": "4px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "gutter": "16px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "18px", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="overflow-hidden">
+<!-- TopNavBar Execution -->
+<header class="sticky top-0 w-full h-16 flex justify-between items-center px-lg z-50 bg-surface-container-lowest border-b border-outline-variant ant-shadow">
+<div class="flex items-center gap-md">
+<div class="text-headline-sm font-headline-sm font-bold text-primary flex items-center gap-2">
+<div class="w-8 h-8 bg-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">layers</span>
+</div>
+<span>ReservePro</span>
+</div>
+<!-- Global Search -->
+<div class="ml-xl relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-body-md group-focus-within:text-primary transition-colors">search</span>
+<input class="w-[400px] h-10 pl-10 pr-4 bg-surface-container-low border border-outline-variant rounded-lg text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Search rooms or bookings..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-low p-1 rounded-lg transition-colors">
+<img alt="User profile picture" class="w-8 h-8 rounded-full object-cover" data-alt="A professional headshot of a smiling male executive in his late 30s, wearing a modern charcoal grey blazer. The background is a blurred high-end corporate office setting with soft, warm lighting. The overall aesthetic is clean, professional, and reliable, aligned with a modern SaaS dashboard user interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDbt7tgeMAzw00Ar6Lrpd71YboPWjtWUTXdW4FpIZqa-AG-lDeSj7uFcQOGNQXSPjVTJYIC2qJ-dguj6efmgFh1teR8AFcIM7rP_xTrt-FREVwHK6pFVaRkzMwllHLbOwVL95C2L2aTFIL3TuNV6iqbvDyp3hbKuIJ_flIQxEodL7fMYGloddXPHZaMCMG9L1tdzOmWPsuuyvhSG9C6sKC92NBIdsGRa3ivnJbwiOtQN4dKH78Gtv6NSNWYjze6ZSDZb1Fh5nMpNU"/>
+<span class="text-label-md font-label-md text-on-surface">Alex Thompson</span>
+<span class="material-symbols-outlined text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+</header>
+<div class="flex h-[calc(100vh-64px)]">
+<!-- SideNavBar / Room List -->
+<aside class="w-64 flex flex-col bg-surface-container-lowest border-r border-outline-variant shrink-0 overflow-y-auto">
+<div class="p-md">
+<div class="flex items-center justify-between mb-md">
+<h2 class="text-label-md font-bold text-on-surface uppercase tracking-wider">Meeting Rooms</h2>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary">filter_list</span>
+</div>
+<nav class="space-y-1">
+<!-- Dashboard Active -->
+<div class="flex items-center gap-3 px-3 py-3 rounded-lg cursor-pointer bg-primary-container text-on-primary-container border-l-4 border-primary ant-shadow">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-label-md font-bold">Dashboard</span>
+</div>
+<!-- Room Item 1 (Selected/Boardroom A) -->
+<div class="flex items-center justify-between px-3 py-3 mt-4 rounded-lg bg-surface-container-low border border-primary/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">meeting_room</span>
+<div>
+<p class="text-label-md font-bold text-primary">Boardroom A</p>
+<p class="text-xs text-outline">12 seats</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-sm bg-error/10 text-error text-[10px] font-bold uppercase">In Use</span>
+</div>
+<!-- Room Item 2 -->
+<div class="flex items-center justify-between px-3 py-3 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">workspaces</span>
+<div>
+<p class="text-label-md font-medium text-on-surface">Studio 4</p>
+<p class="text-xs text-outline">4 seats</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-sm bg-secondary-container/30 text-on-secondary-container text-[10px] font-bold uppercase">Available</span>
+</div>
+<!-- Room Item 3 -->
+<div class="flex items-center justify-between px-3 py-3 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">biotech</span>
+<div>
+<p class="text-label-md font-medium text-on-surface">Creative Lab</p>
+<p class="text-xs text-outline">8 seats</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-sm bg-secondary-container/30 text-on-secondary-container text-[10px] font-bold uppercase">Available</span>
+</div>
+<div class="h-[1px] bg-outline-variant my-md"></div>
+<!-- Other Nav items from JSON side-nav logic -->
+<div class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-surface-container-low text-on-surface-variant transition-colors cursor-pointer">
+<span class="material-symbols-outlined">event_note</span>
+<span class="text-label-md">My Bookings</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-surface-container-low text-on-surface-variant transition-colors cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md">Settings</span>
+</div>
+</nav>
+</div>
+<div class="mt-auto p-md border-t border-outline-variant">
+<div class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-surface-container-low text-on-surface-variant transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="text-label-md">Help Center</span>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 overflow-y-auto bg-surface p-lg">
+<div class="max-w-[1200px] mx-auto space-y-lg">
+<!-- Hero Banner: Boardroom A -->
+<section class="relative h-72 rounded-xl overflow-hidden ant-shadow border border-outline-variant group">
+<img alt="Boardroom A" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A luxurious, high-end corporate boardroom featuring a large polished oak table and 12 ergonomic leather chairs. The room has floor-to-ceiling windows showing a bright city skyline, minimalist grey walls, and a large 4K display mounted at the head. Soft, professional daylight floods the space, creating a clean, productive atmosphere consistent with modern executive office design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV1YEECICRx9DR6tF4ha-CpOkKyogw8YbOp21DRxPDHMGmsofHFjraeUgZ4CQx_DB-8VIPfqTSOG0U774oMuKida6BP6B6X6HUywgFowhKm-G55qR7VIwXy6y0M0oiSaBwQU-gR-ZWbMWgz0cHz5brHPSmMx1W1RQuvquOBTQL6C8cr4SVqcFHVw5q2owmrsn5K9nNgBC3sEINsariTh3lmnjN5a2K-SfrcbXJUpDKak2VlAVbfaoluDdnroKFFvOgIPLYLaOv0X0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-lg text-white">
+<div class="flex items-center gap-md mb-2">
+<span class="px-3 py-1 bg-primary rounded-full text-[12px] font-bold uppercase tracking-wider">Featured Space</span>
+<span class="flex items-center gap-1 text-label-md"><span class="material-symbols-outlined text-[18px]">group</span> Capacity: 12</span>
+</div>
+<h1 class="text-headline-lg font-headline-lg mb-2">Boardroom A</h1>
+<div class="flex flex-wrap gap-md">
+<span class="flex items-center gap-1 text-body-md opacity-90"><span class="material-symbols-outlined text-[18px]">videocam</span> Projector &amp; 4K TV</span>
+<span class="flex items-center gap-1 text-body-md opacity-90"><span class="material-symbols-outlined text-[18px]">draw</span> Whiteboard</span>
+<span class="flex items-center gap-1 text-body-md opacity-90"><span class="material-symbols-outlined text-[18px]">wifi</span> High-speed Wi-Fi</span>
+</div>
+</div>
+</section>
+<!-- Today's Schedule -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant ant-shadow overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-white">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Today's Schedule</h3>
+<div class="flex items-center gap-md">
+<button class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant rounded-lg text-label-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Nov 24, 2023</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-lg py-3 text-label-md font-bold text-outline uppercase tracking-wider">Time</th>
+<th class="px-lg py-3 text-label-md font-bold text-outline uppercase tracking-wider">Meeting Title</th>
+<th class="px-lg py-3 text-label-md font-bold text-outline uppercase tracking-wider">Host</th>
+<th class="px-lg py-3 text-label-md font-bold text-outline uppercase tracking-wider">Status</th>
+<th class="px-lg py-3 text-label-md font-bold text-outline uppercase tracking-wider">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-lg py-4 text-body-md font-medium text-on-surface">09:00 - 10:30</td>
+<td class="px-lg py-4 text-body-md font-semibold text-primary">Weekly Sync</td>
+<td class="px-lg py-4 text-body-md text-on-surface-variant">Sarah Jenkins</td>
+<td class="px-lg py-4">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-error/10 text-error text-xs font-bold">
+<span class="w-1.5 h-1.5 bg-error rounded-full animate-pulse"></span>
+                                            Ongoing
+                                        </span>
+</td>
+<td class="px-lg py-4">
+<button class="text-primary hover:underline text-label-md">View Details</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-lg py-4 text-body-md font-medium text-on-surface">11:00 - 12:00</td>
+<td class="px-lg py-4 text-body-md font-semibold text-on-surface">Product Roadmap Review</td>
+<td class="px-lg py-4 text-body-md text-on-surface-variant">Michael Chen</td>
+<td class="px-lg py-4">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-secondary-container/30 text-on-secondary-container text-xs font-bold">
+                                            Upcoming
+                                        </span>
+</td>
+<td class="px-lg py-4">
+<button class="text-primary hover:underline text-label-md">Edit</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-lg py-4 text-body-md font-medium text-on-surface">13:30 - 15:00</td>
+<td class="px-lg py-4 text-body-md font-semibold text-on-surface">Design Sprint Kickoff</td>
+<td class="px-lg py-4 text-body-md text-on-surface-variant">Elena Rodriguez</td>
+<td class="px-lg py-4">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-secondary-container/30 text-on-secondary-container text-xs font-bold">
+                                            Upcoming
+                                        </span>
+</td>
+<td class="px-lg py-4">
+<button class="text-primary hover:underline text-label-md">Edit</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<!-- Right Panel: Quick Reserve -->
+<aside class="w-80 bg-surface-container-lowest border-l border-outline-variant shrink-0 p-lg ant-shadow overflow-y-auto">
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-lg">Quick Reserve</h3>
+<form class="space-y-md" id="reserveForm">
+<div class="space-y-xs">
+<label class="text-label-md font-bold text-on-surface-variant">Meeting Title</label>
+<input class="w-full h-10 px-md border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all" placeholder="e.g. Stakeholder Meeting" type="text"/>
+</div>
+<div class="space-y-xs">
+<label class="text-label-md font-bold text-on-surface-variant">Host Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">person</span>
+<input class="w-full h-10 pl-10 pr-4 border border-outline-variant rounded-lg text-body-md bg-surface-container-low cursor-not-allowed" disabled="" readonly="" type="text" value="Alex Thompson"/>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="text-label-md font-bold text-on-surface-variant">Date</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">calendar_month</span>
+<input class="w-full h-10 pl-10 pr-4 border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all" type="date"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="text-label-md font-bold text-on-surface-variant">Start Time</label>
+<input class="w-full h-10 px-3 border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all" type="time"/>
+</div>
+<div class="space-y-xs">
+<label class="text-label-md font-bold text-on-surface-variant">End Time</label>
+<input class="w-full h-10 px-3 border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all" type="time"/>
+</div>
+</div>
+<div class="pt-lg">
+<button class="w-full h-11 bg-primary text-white font-bold rounded-lg hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2 ant-shadow" type="submit">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+                        Confirm Booking
+                    </button>
+<p class="text-center text-xs text-outline mt-3">By clicking you agree to the workspace policies.</p>
+</div>
+</form>
+<div class="mt-xl p-md bg-primary-fixed rounded-xl border border-primary/20">
+<div class="flex items-center gap-2 text-primary mb-2">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<p class="text-label-md font-bold">Booking Tip</p>
+</div>
+<p class="text-xs text-on-primary-fixed-variant leading-relaxed">
+                    Peak hours are between 10:00 AM and 2:00 PM. Book in advance for Studio rooms.
+                </p>
+</div>
+</aside>
+</div>
+<!-- Success Modal (Hidden by Default) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm hidden" id="successModal">
+<div class="bg-surface-container-lowest p-xl rounded-2xl ant-shadow max-w-sm w-full border border-outline-variant text-center">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mx-auto mb-md">
+<span class="material-symbols-outlined text-primary text-[40px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h4 class="text-headline-sm font-headline-sm text-on-surface mb-2">Booking Confirmed!</h4>
+<p class="text-body-md text-on-surface-variant mb-lg">Your reservation for Boardroom A has been successfully added to the schedule.</p>
+<button class="w-full h-11 border border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors" onclick="document.getElementById('successModal').classList.add('hidden')">
+                Back to Dashboard
+            </button>
+</div>
+</div>
+<script>
+        // Micro-interactions for the form
+        document.getElementById('reserveForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalContent = btn.innerHTML;
+            
+            // Simulated loading state
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Processing...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                document.getElementById('successModal').classList.remove('hidden');
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            }, 800);
+        });
+
+        // Search bar focus effects
+        const searchInput = document.querySelector('input[placeholder*="Search"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.01]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.01]');
+        });
+    </script>
+</body></html>
