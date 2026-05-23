@@ -1,8 +1,10 @@
 import apiClient from '../lib/axios';
+import type { AuthUser } from '../types';
 
 export interface LoginResponse {
   token: string;
   type: string;
+  user: AuthUser;
 }
 
 export const loginApi = async (email: string, password: string): Promise<LoginResponse> => {

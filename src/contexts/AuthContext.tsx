@@ -32,12 +32,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (response && response.token) {
         localStorage.setItem('reserve_pro_token', response.token);
         
-        // Tạo object user từ email đăng nhập vì backend không trả về thông tin user
-        const loggedUser: AuthUser = {
-          id: 1, // Dummy ID
-          email: email,
-          name: email.split('@')[0],
-        };
+        const loggedUser: AuthUser = response.user;
         
         setUser(loggedUser);
         localStorage.setItem('reserve_pro_user', JSON.stringify(loggedUser));
