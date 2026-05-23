@@ -16,7 +16,8 @@ describe('auth.service', () => {
   });
 
   test('loginApi - success', async () => {
-    const mockResponse = { data: { token: 'mock-token', type: 'Bearer' } };
+    const mockUser = { id: 1, email: 'test@example.com', name: 'test' };
+    const mockResponse = { data: { token: 'mock-token', type: 'Bearer', user: mockUser } };
     vi.mocked(apiClient.post).mockResolvedValueOnce(mockResponse);
 
     const result = await loginApi('test@example.com', 'password123');
@@ -25,7 +26,7 @@ describe('auth.service', () => {
       email: 'test@example.com',
       password: 'password123',
     });
-    expect(result).toEqual({ token: 'mock-token', type: 'Bearer' });
+    expect(result).toEqual({ token: 'mock-token', type: 'Bearer', user: mockUser });
   });
 
   test('loginApi - failure', async () => {

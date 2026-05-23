@@ -25,14 +25,10 @@ export const BookingFormSection: React.FC = () => {
   const { mutateAsync: createBooking, isPending } = useCreateBooking();
   const [form] = Form.useForm();
   const { message } = App.useApp();
-  const [error, setError] = useState<string | null>(null);
-  const [prevRoomId, setPrevRoomId] = useState<number | null>(selectedRoomId);
+  const [error, setError] = useState<{ roomId: number | null; message: string | null }>({ roomId: null, message: null });
 
-  // Clear error when selected room changes
-  if (selectedRoomId !== prevRoomId) {
-    setPrevRoomId(selectedRoomId);
-    setError(null);
-  }
+  // Calculate displayed error dynamically during render to avoid synchronous state updates in useEffect
+  const displayedError = error.roomId === selectedRoomId ? error.message : null;
 
   // Keep hostName input value in sync with authenticated user
   useEffect(() => {
@@ -91,7 +87,7 @@ export const BookingFormSection: React.FC = () => {
     };
 
     try {
-      setError(null);
+      setError({ roomId: null, message: null });
       await createBooking(payload);
       message.success('Successfully reserved the room!');
       form.resetFields(['title', 'startTime', 'endTime']);
@@ -115,7 +111,7 @@ export const BookingFormSection: React.FC = () => {
           }
         }
 
-        setError(errorMessage);
+        setError({ roomId: selectedRoomId, message: errorMessage });
       } else {
         message.error('Failed to create reservation');
       }
@@ -128,13 +124,13 @@ export const BookingFormSection: React.FC = () => {
         Quick Reserve
       </Title>
 
-      {error && (
+      {displayedError && (
         <Alert
-          title={error}
+          title={displayedError}
           type="error"
           showIcon
           closable
-          onClose={() => setError(null)}
+          onClose={() => setError({ roomId: null, message: null })}
           style={{ marginBottom: 16 }}
         />
       )}
@@ -143,7 +139,7 @@ export const BookingFormSection: React.FC = () => {
         form={form}
         layout="vertical"
         onFinish={onFinish}
-        onValuesChange={() => setError(null)}
+        onValuesChange={() => setError({ roomId: null, message: null })}
         requiredMark={false}
         initialValues={{
           date: dayjs(),

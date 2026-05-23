@@ -54,7 +54,7 @@ describe('useCreateBooking', () => {
       end_time: '2026-05-21 11:00:00',
       title: 'Lunch meeting',
     };
-    vi.mocked(createBookingApi).mockResolvedValue({ id: 99, ...mockBookingParams });
+    vi.mocked(createBookingApi).mockResolvedValue({ id: 99, user_id: 1, ...mockBookingParams });
 
     const { wrapper } = createWrapper(5);
     const { result } = renderHook(() => useCreateBooking(), { wrapper });
@@ -73,7 +73,7 @@ describe('useCreateBooking', () => {
       end_time: '2026-05-21 11:00:00',
       title: 'Lunch meeting',
     };
-    vi.mocked(createBookingApi).mockResolvedValue({ id: 99, ...mockBookingParams });
+    vi.mocked(createBookingApi).mockResolvedValue({ id: 99, user_id: 1, ...mockBookingParams });
 
     const { wrapper, queryClient } = createWrapper(12);
     const invalidateSpy = vi.spyOn(queryClient, 'invalidateQueries');

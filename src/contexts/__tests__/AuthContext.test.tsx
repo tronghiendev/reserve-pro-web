@@ -51,7 +51,8 @@ describe('AuthContext', () => {
   });
 
   it('successfully logs in, updates state, and sets localStorage', async () => {
-    vi.mocked(loginApi).mockResolvedValue({ token: 'mock-token', type: 'Bearer' });
+    const mockUser = { id: 1, email: 'test@example.com', name: 'test' };
+    vi.mocked(loginApi).mockResolvedValue({ token: 'mock-token', type: 'Bearer', user: mockUser });
 
     render(
       <AuthProvider>
@@ -68,11 +69,7 @@ describe('AuthContext', () => {
     expect(screen.getByTestId('auth-status').textContent).toBe('authenticated');
     expect(screen.getByTestId('user-email').textContent).toBe('test@example.com');
     expect(localStorage.getItem('reserve_pro_token')).toBe('mock-token');
-    expect(JSON.parse(localStorage.getItem('reserve_pro_user') || '{}')).toEqual({
-      id: 1,
-      email: 'test@example.com',
-      name: 'test',
-    });
+    expect(JSON.parse(localStorage.getItem('reserve_pro_user') || '{}')).toEqual(mockUser);
   });
 
   it('clears state and localStorage on logout', () => {
